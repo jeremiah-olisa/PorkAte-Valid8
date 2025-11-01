@@ -1,5 +1,7 @@
 import {
   VerificationEventEmitter,
+  // EventListener is imported for type completeness but may not be directly used
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   EventListener,
 } from './event-emitter';
 import {
@@ -71,6 +73,7 @@ export class EventLogger {
   /**
    * Determine log level for event
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private getLogLevel(eventType: VerificationEventType, data: EventData): LogLevel {
     if (eventType.includes('failed') || eventType.includes('error')) {
       return LogLevel.ERROR;

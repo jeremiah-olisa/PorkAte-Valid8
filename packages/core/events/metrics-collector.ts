@@ -1,5 +1,7 @@
 import {
   VerificationEventEmitter,
+  // EventListener is imported for type completeness but may not be directly used
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   EventListener,
 } from './event-emitter';
 import {
