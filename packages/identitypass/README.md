@@ -25,16 +25,16 @@ pnpm add @porkate/valid8-identitypass @porkate/valid8
 
 - ✅ **NIN (National Identification Number)**: Basic, With Face, Slip, Virtual NIN
 - ✅ **BVN (Bank Verification Number)**: Basic, Advance, With Face, By Phone Number
-- 🚧 **CAC (Corporate Affairs Commission)**: Basic, Advance, Company Search (Coming Soon)
-- 🚧 **International Passport**: Basic, V2, Image, With Face (Coming Soon)
-- 🚧 **Driver's License**: Basic, Advance, Image, With Face, V2 (Coming Soon)
-- 🚧 **Phone Number**: Basic, Advance (Coming Soon)
-- 🚧 **Bank Account**: Basic, Advance, Comparison (Coming Soon)
-- 🚧 **Vehicle**: Plate Number, VIN/Chassis (Coming Soon)
-- 🚧 **Tax**: TIN, Stamp Duty (Coming Soon)
-- 🚧 **Voter's Card** (Coming Soon)
-- 🚧 **Credit Bureau**: Consumer, Commercial (Coming Soon)
-- 🚧 **Others**: Address, NYSC, Insurance, WAEC, Documents (Coming Soon)
+- ✅ **CAC (Corporate Affairs Commission)**: Basic, Advance, Company Search by Name/Person/RC Number
+- ✅ **International Passport**: Basic, V2, Image, With Face
+- ✅ **Driver's License**: Basic, Advance, Image, With Face, V2
+- ✅ **Phone Number**: Basic, Advance
+- ✅ **Bank Account**: Basic, Advance, Comparison, List Bank Codes
+- ✅ **Vehicle**: Plate Number, VIN/Chassis
+- ✅ **Tax**: TIN, Stamp Duty
+- ✅ **Voter's Card**: Basic verification
+- ✅ **Credit Bureau**: Consumer (Basic/Advance), Commercial (Basic/Advance)
+- ✅ **Others**: Address, NYSC, Insurance, National ID, WAEC, Documents (with/without Face)
 
 ## Quick Start
 
@@ -183,6 +183,260 @@ if (bvnService.getBVNByPhoneNumber) {
   });
 }
 ```
+
+### CAC (Company) Verification
+
+#### Basic CAC Verification
+```typescript
+const cacService = adapter.getCACService();
+if (cacService) {
+  const result = await cacService.verifyCAC({
+    rcNumber: 'RC1234567',
+    // or use bnNumber or companyName
+  });
+}
+```
+
+#### Advanced CAC with Directors and Shareholders
+```typescript
+if (cacService?.verifyCACAdvance) {
+  const result = await cacService.verifyCACAdvance({
+    rcNumber: 'RC1234567',
+    includeDirectors: true,
+    includeShareholdings: true,
+  });
+}
+```
+
+#### Company Search by Name
+```typescript
+if (cacService?.searchCompanyByName) {
+  const result = await cacService.searchCompanyByName({
+    companyName: 'Example Corp',
+  });
+}
+```
+
+### Vehicle Verification
+
+```typescript
+const vehicleService = adapter.getVehicleService();
+if (vehicleService) {
+  // By plate number
+  const result = await vehicleService.verifyPlateNumber({
+    plateNumber: 'ABC123XY',
+  });
+  
+  // By VIN/Chassis
+  const result2 = await vehicleService.verifyVINChasis({
+    vinNumber: '1HGBH41JXMN109186',
+  });
+}
+```
+
+### Driver's License Verification
+
+```typescript
+const dlService = adapter.getDriversLicenseService();
+if (dlService) {
+  // Basic verification
+  const result = await dlService.verifyDriversLicense({
+    licenseNumber: 'FKJ1234567',
+    firstName: 'John',
+    lastName: 'Doe',
+  });
+  
+  // With face matching
+  if (dlService.verifyDriversLicenseWithFace) {
+    const result2 = await dlService.verifyDriversLicenseWithFace({
+      licenseNumber: 'FKJ1234567',
+      image: 'base64-encoded-face-image',
+    });
+  }
+}
+```
+
+### Passport Verification
+
+```typescript
+const passportService = adapter.getPassportService();
+if (passportService) {
+  // Basic passport verification
+  const result = await passportService.verifyPassport({
+    passportNumber: 'A12345678',
+    firstName: 'John',
+    lastName: 'Doe',
+  });
+  
+  // With face matching
+  if (passportService.verifyPassportWithFace) {
+    const result2 = await passportService.verifyPassportWithFace({
+      passportNumber: 'A12345678',
+      image: 'base64-encoded-face-image',
+    });
+  }
+}
+```
+
+### Phone Number Verification
+
+```typescript
+const phoneService = adapter.getPhoneService();
+if (phoneService) {
+  // Basic verification
+  const result = await phoneService.verifyPhoneNumber({
+    phoneNumber: '+2348012345678',
+  });
+  
+  // Advanced with carrier info
+  if (phoneService.verifyPhoneNumberAdvance) {
+    const result2 = await phoneService.verifyPhoneNumberAdvance({
+      phoneNumber: '+2348012345678',
+      includeCarrierInfo: true,
+    });
+  }
+}
+```
+
+### Bank Account Verification
+
+```typescript
+const bankService = adapter.getBankAccountService();
+if (bankService) {
+  // Basic verification
+  const result = await bankService.verifyBankAccount({
+    accountNumber: '0123456789',
+    bankCode: '058',
+  });
+  
+  // Account comparison with name
+  if (bankService.compareBankAccount) {
+    const result2 = await bankService.compareBankAccount({
+      accountNumber: '0123456789',
+      bankCode: '058',
+      firstName: 'John',
+      lastName: 'Doe',
+    });
+  }
+  
+  // List available bank codes
+  if (bankService.listBankCodes) {
+    const banks = await bankService.listBankCodes();
+  }
+}
+```
+
+### Tax Verification
+
+```typescript
+const taxService = adapter.getTaxService();
+if (taxService) {
+  // TIN verification
+  const result = await taxService.verifyTIN({
+    tin: '12345678-0001',
+    channel: 'online',
+  });
+  
+  // Stamp duty verification
+  if (taxService.verifyStampDuty) {
+    const result2 = await taxService.verifyStampDuty({
+      referenceNumber: 'SD123456789',
+    });
+  }
+}
+```
+
+### Voter's Card Verification
+
+```typescript
+const votersService = adapter.getVotersCardService();
+if (votersService) {
+  const result = await votersService.verifyVotersCard({
+    vin: '90F5B12345678901',
+    firstName: 'John',
+    lastName: 'Doe',
+    state: 'Lagos',
+  });
+}
+```
+
+### Credit Bureau Verification
+
+```typescript
+const creditService = adapter.getCreditBureauService();
+if (creditService) {
+  // Consumer credit - basic
+  if (creditService.verifyCreditBureauConsumerBasic) {
+    const result = await creditService.verifyCreditBureauConsumerBasic({
+      bvn: '12345678901',
+      phoneNumber: '+2348012345678',
+    });
+  }
+  
+  // Consumer credit - advanced
+  if (creditService.verifyCreditBureauConsumerAdvance) {
+    const result2 = await creditService.verifyCreditBureauConsumerAdvance({
+      bvn: '12345678901',
+      includeHistory: true,
+    });
+  }
+  
+  // Commercial credit - basic
+  if (creditService.verifyCreditBureauCommercialBasic) {
+    const result3 = await creditService.verifyCreditBureauCommercialBasic({
+      rcNumber: 'RC1234567',
+    });
+  }
+}
+```
+
+### Other Verification Services
+
+```typescript
+const otherService = adapter.getOtherService();
+if (otherService) {
+  // Address verification
+  if (otherService.verifyAddress) {
+    const result = await otherService.verifyAddress({
+      address: '123 Main St, Lagos',
+      state: 'Lagos',
+    });
+  }
+  
+  // NYSC verification
+  if (otherService.verifyNYSC) {
+    const result2 = await otherService.verifyNYSC({
+      certificateNumber: 'NYSC/12345/2020',
+      firstName: 'John',
+      lastName: 'Doe',
+    });
+  }
+  
+  // WAEC verification
+  if (otherService.verifyWAEC) {
+    const result3 = await otherService.verifyWAEC({
+      examNumber: '1234567890',
+      examYear: '2020',
+    });
+  }
+  
+  // Insurance policy verification
+  if (otherService.verifyInsurancePolicy) {
+    const result4 = await otherService.verifyInsurancePolicy({
+      policyNumber: 'POL123456789',
+    });
+  }
+  
+  // Document verification with face
+  if (otherService.verifyDocumentWithFace) {
+    const result5 = await otherService.verifyDocumentWithFace({
+      documentType: 'national_id',
+      documentNumber: 'ID123456789',
+      image: 'base64-encoded-document-image',
+      faceImage: 'base64-encoded-face-image',
+    });
+  }
+}
 
 ## Response Structure
 
