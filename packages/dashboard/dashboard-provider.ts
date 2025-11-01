@@ -1,6 +1,5 @@
 import { VerificationEventEmitter } from '@porkate/valid8';
 import { MetricsCollector, MetricsSnapshot } from '@porkate/valid8';
-import { EventLogger } from '@porkate/valid8';
 import {
   VerificationEventType,
   EventData,
@@ -179,7 +178,7 @@ export class DashboardDataProvider {
   private calculateServiceStatus(metrics: MetricsSnapshot): ServiceStatusSummary[] {
     const serviceMap = new Map<ServiceType, ServiceStatusSummary>();
 
-    Object.entries(metrics.adapters).forEach(([adapter, adapterMetrics]) => {
+    Object.entries(metrics.adapters).forEach(([_adapterName, adapterMetrics]) => {
       Object.entries(adapterMetrics).forEach(([serviceType, serviceMetrics]) => {
         if (serviceType === 'overall') return;
 

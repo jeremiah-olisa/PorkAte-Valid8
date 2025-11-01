@@ -201,10 +201,17 @@ describe('IdentityPass Adapters E2E Tests', () => {
         expect(bvnService!.isReady()).toBe(true);
       });
 
-      it('should return null for unsupported services', () => {
-        expect(adapter.getCACService()).toBeNull();
-        expect(adapter.getDriversLicenseService()).toBeNull();
-        expect(adapter.getPassportService()).toBeNull();
+      it('should provide all supported services', () => {
+        expect(adapter.getCACService()).toBeDefined();
+        expect(adapter.getDriversLicenseService()).toBeDefined();
+        expect(adapter.getPassportService()).toBeDefined();
+        expect(adapter.getPhoneService()).toBeDefined();
+        expect(adapter.getBankAccountService()).toBeDefined();
+        expect(adapter.getVehicleService()).toBeDefined();
+        expect(adapter.getTaxService()).toBeDefined();
+        expect(adapter.getVotersCardService()).toBeDefined();
+        expect(adapter.getCreditBureauService()).toBeDefined();
+        expect(adapter.getOtherService()).toBeDefined();
       });
     });
 

@@ -1,3 +1,13 @@
 export { BaseIdentityPassService } from './base.service';
 export { IdentityPassNINService } from './nin-verification.service';
 export { IdentityPassBVNService } from './bvn-verification.service';
+export { IdentityPassCACService } from './cac-verification.service';
+export { IdentityPassVehicleService } from './vehicle-verification.service';
+export { IdentityPassDriversLicenseService } from './drivers-license-verification.service';
+export { IdentityPassPassportService } from './passport-verification.service';
+export { IdentityPassPhoneService } from './phone-verification.service';
+export { IdentityPassBankAccountService } from './bank-account-verification.service';
+export { IdentityPassCreditBureauService } from './credit-bureau-verification.service';
+export { IdentityPassTaxService } from './tax-verification.service';
+export { IdentityPassVotersCardService } from './voters-card-verification.service';
+export { IdentityPassOtherService } from './other-verification.service';
