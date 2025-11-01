@@ -17,6 +17,16 @@ import {
 import { IdentityPassConfig } from './types';
 import { IdentityPassNINService } from './services/nin-verification.service';
 import { IdentityPassBVNService } from './services/bvn-verification.service';
+import { IdentityPassCACService } from './services/cac-verification.service';
+import { IdentityPassVehicleService } from './services/vehicle-verification.service';
+import { IdentityPassDriversLicenseService } from './services/drivers-license-verification.service';
+import { IdentityPassPassportService } from './services/passport-verification.service';
+import { IdentityPassPhoneService } from './services/phone-verification.service';
+import { IdentityPassBankAccountService } from './services/bank-account-verification.service';
+import { IdentityPassCreditBureauService } from './services/credit-bureau-verification.service';
+import { IdentityPassTaxService } from './services/tax-verification.service';
+import { IdentityPassVotersCardService } from './services/voters-card-verification.service';
+import { IdentityPassOtherService } from './services/other-verification.service';
 
 /**
  * Modern IdentityPass adapter implementing composite verification pattern
@@ -30,6 +40,16 @@ export class IdentityPassCompositeAdapter implements ICompositeVerificationAdapt
   // Lazy-loaded services
   private ninService?: IdentityPassNINService;
   private bvnService?: IdentityPassBVNService;
+  private cacService?: IdentityPassCACService;
+  private vehicleService?: IdentityPassVehicleService;
+  private driversLicenseService?: IdentityPassDriversLicenseService;
+  private passportService?: IdentityPassPassportService;
+  private phoneService?: IdentityPassPhoneService;
+  private bankAccountService?: IdentityPassBankAccountService;
+  private creditBureauService?: IdentityPassCreditBureauService;
+  private taxService?: IdentityPassTaxService;
+  private votersCardService?: IdentityPassVotersCardService;
+  private otherService?: IdentityPassOtherService;
 
   constructor(config: IdentityPassConfig) {
     this.config = {
@@ -70,45 +90,73 @@ export class IdentityPassCompositeAdapter implements ICompositeVerificationAdapt
     return this.bvnService;
   }
 
-  // These methods return null for unsupported services
-  // In future implementations, these can be added
-  getCACService(): ICACVerificationService | null {
-    return null;
+  getCACService(): ICACVerificationService {
+    if (!this.cacService) {
+      this.cacService = new IdentityPassCACService(this.client, this.providerName);
+    }
+    return this.cacService;
   }
 
-  getDriversLicenseService(): IDriversLicenseVerificationService | null {
-    return null;
+  getDriversLicenseService(): IDriversLicenseVerificationService {
+    if (!this.driversLicenseService) {
+      this.driversLicenseService = new IdentityPassDriversLicenseService(this.client, this.providerName);
+    }
+    return this.driversLicenseService;
   }
 
-  getPassportService(): IPassportVerificationService | null {
-    return null;
+  getPassportService(): IPassportVerificationService {
+    if (!this.passportService) {
+      this.passportService = new IdentityPassPassportService(this.client, this.providerName);
+    }
+    return this.passportService;
   }
 
-  getPhoneService(): IPhoneVerificationService | null {
-    return null;
+  getPhoneService(): IPhoneVerificationService {
+    if (!this.phoneService) {
+      this.phoneService = new IdentityPassPhoneService(this.client, this.providerName);
+    }
+    return this.phoneService;
   }
 
-  getBankAccountService(): IBankAccountVerificationService | null {
-    return null;
+  getBankAccountService(): IBankAccountVerificationService {
+    if (!this.bankAccountService) {
+      this.bankAccountService = new IdentityPassBankAccountService(this.client, this.providerName);
+    }
+    return this.bankAccountService;
   }
 
-  getVehicleService(): IVehicleVerificationService | null {
-    return null;
+  getVehicleService(): IVehicleVerificationService {
+    if (!this.vehicleService) {
+      this.vehicleService = new IdentityPassVehicleService(this.client, this.providerName);
+    }
+    return this.vehicleService;
   }
 
-  getTaxService(): ITaxVerificationService | null {
-    return null;
+  getTaxService(): ITaxVerificationService {
+    if (!this.taxService) {
+      this.taxService = new IdentityPassTaxService(this.client, this.providerName);
+    }
+    return this.taxService;
   }
 
-  getVotersCardService(): IVotersCardVerificationService | null {
-    return null;
+  getVotersCardService(): IVotersCardVerificationService {
+    if (!this.votersCardService) {
+      this.votersCardService = new IdentityPassVotersCardService(this.client, this.providerName);
+    }
+    return this.votersCardService;
   }
 
-  getCreditBureauService(): ICreditBureauVerificationService | null {
-    return null;
+  getCreditBureauService(): ICreditBureauVerificationService {
+    if (!this.creditBureauService) {
+      this.creditBureauService = new IdentityPassCreditBureauService(this.client, this.providerName);
+    }
+    return this.creditBureauService;
   }
 
-  getOtherService(): IOtherVerificationService | null {
-    return null;
+  getOtherService(): IOtherVerificationService {
+    if (!this.otherService) {
+      this.otherService = new IdentityPassOtherService(this.client, this.providerName);
+    }
+    return this.otherService;
   }
 }
