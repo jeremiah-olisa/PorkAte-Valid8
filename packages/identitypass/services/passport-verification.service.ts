@@ -11,75 +11,144 @@ import { BaseIdentityPassService } from './base.service';
 /**
  * IdentityPass International Passport Verification Service
  */
-export class IdentityPassPassportService extends BaseIdentityPassService implements IPassportVerificationService {
-  async verifyPassport(data: PassportVerificationRequest): Promise<VerificationResponse<PassportVerificationData>> {
+export class IdentityPassPassportService
+  extends BaseIdentityPassService
+  implements IPassportVerificationService
+{
+  /**
+   * Verify International Passport
+   * @see https://docs.prembly.com/docs/international-passport-copy
+   */
+  async verifyPassport(
+    data: PassportVerificationRequest,
+  ): Promise<VerificationResponse<PassportVerificationData>> {
     return this.makeRequest(
-      '/api/v1/biometrics/merchant/data/verification/passport',
+      '/verification/national_passport',
       {
-        number: data.passportNumber,
-        firstname: data.firstName,
-        lastname: data.lastName,
-        dob: data.dateOfBirth,
+        number: data?.passportNumber,
+        last_name: data?.lastName,
       },
-      this.mapPassportData
+      this.mapPassportData,
     );
   }
 
-  async verifyPassportV2(data: PassportVerificationRequest): Promise<VerificationResponse<PassportVerificationData>> {
+  /**
+   * Verify International Passport V2
+   * @see https://docs.prembly.com/docs/passport-version-2-1
+   */
+  async verifyPassportV2(
+    data: PassportVerificationRequest,
+  ): Promise<VerificationResponse<PassportVerificationData>> {
     return this.makeRequest(
-      '/api/v2/biometrics/merchant/data/verification/passport',
+      '/verification/national_passport_v2',
       {
-        number: data.passportNumber,
-        firstname: data.firstName,
-        lastname: data.lastName,
-        dob: data.dateOfBirth,
+        number: data?.passportNumber,
+        last_name: data?.lastName,
+        dob: data?.dateOfBirth,
       },
-      this.mapPassportData
+      this.mapPassportData,
     );
   }
 
+  /**
+   * Verify International Passport with Face Validation
+   * @see https://docs.prembly.com/docs/international-passport-face-validation-copy
+   */
   async verifyPassportWithFace(
-    data: PassportWithFaceVerificationRequest
+    data: PassportWithFaceVerificationRequest,
   ): Promise<VerificationResponse<PassportVerificationData>> {
     return this.makeRequest(
-      '/api/v1/biometrics/merchant/data/verification/passport/face',
+      '/verification/national_passport_with_face',
       {
-        number: data.passportNumber,
-        firstname: data.firstName,
-        lastname: data.lastName,
-        dob: data.dateOfBirth,
-        image: data.image,
+        number: data?.passportNumber,
+        last_name: data?.lastName,
+        image: data?.image,
       },
-      this.mapPassportData
+      this.mapPassportData,
     );
   }
 
+  /**
+   * Verify International Passport Image (Extract and Verify)
+   * @see https://docs.prembly.com/docs/international-passport-image-copy
+   */
   async verifyPassportImage(
-    data: PassportImageVerificationRequest
+    data: PassportImageVerificationRequest,
   ): Promise<VerificationResponse<PassportVerificationData>> {
     return this.makeRequest(
-      '/api/v1/biometrics/merchant/data/verification/passport/image',
+      '/verification/national_passport_image',
       {
-        number: data.passportNumber,
-        image: data.image,
+        image: data?.image,
       },
-      this.mapPassportData
+      this.mapPassportData,
     );
   }
 
-  private mapPassportData(verificationData: any, payload: any): PassportVerificationData {
+  /**
+   * Map Passport API response to PassportVerificationData
+   * Handles various response field formats from Prembly API
+   */
+  private mapPassportData(
+    verificationData: Record<string, unknown>,
+    payload: Record<string, unknown>,
+  ): PassportVerificationData {
     return {
-      passportNumber: verificationData.passport_number || verificationData.passportNumber || payload.number || '',
-      firstName: verificationData.first_name || verificationData.firstname || verificationData.firstName || '',
-      lastName: verificationData.last_name || verificationData.lastname || verificationData.lastName || '',
-      middleName: verificationData.middle_name || verificationData.middlename || verificationData.middleName,
-      dateOfBirth: verificationData.date_of_birth || verificationData.dob || verificationData.dateOfBirth || '',
-      gender: verificationData.gender,
-      nationality: verificationData.nationality,
-      expiryDate: verificationData.expiry_date || verificationData.expiryDate,
-      issueDate: verificationData.issue_date || verificationData.issueDate,
-      photo: verificationData.photo || verificationData.image,
-      placeOfIssue: verificationData.place_of_issue || verificationData.placeOfIssue,
+      passportNumber:
+        (verificationData?.passport_number as string) ||
+        (verificationData?.passportNumber as string) ||
+        (verificationData?.number as string) ||
+        (verificationData?.currentPassportNumber as string) ||
+        (payload?.number as string) ||
+        '',
+      firstName:
+        (verificationData?.first_name as string) ||
+        (verificationData?.firstname as string) ||
+        (verificationData?.firstName as string) ||
+        (verificationData?.currentFirstName as string) ||
+        '',
+      lastName:
+        (verificationData?.last_name as string) ||
+        (verificationData?.lastname as string) ||
+        (verificationData?.lastName as string) ||
+        (verificationData?.currentLastName as string) ||
+        (payload?.last_name as string) ||
+        '',
+      middleName:
+        (verificationData?.middle_name as string) ||
+        (verificationData?.middlename as string) ||
+        (verificationData?.middleName as string) ||
+        (verificationData?.currentMiddleName as string),
+      dateOfBirth:
+        (verificationData?.date_of_birth as string) ||
+        (verificationData?.dob as string) ||
+        (verificationData?.dateOfBirth as string) ||
+        (verificationData?.currentDateOfBirthLabel as string) ||
+        '',
+      gender: (verificationData?.gender as string) || (verificationData?.currentGender as string),
+      nationality: verificationData?.nationality as string,
+      expiryDate:
+        (verificationData?.expiry_date as string) || (verificationData?.expiryDate as string),
+      issueDate:
+        (verificationData?.issue_date as string) ||
+        (verificationData?.issueDate as string) ||
+        (verificationData?.issued_date as string),
+      photo: (verificationData?.photo as string) || (verificationData?.image as string),
+      placeOfIssue:
+        (verificationData?.place_of_issue as string) ||
+        (verificationData?.placeOfIssue as string) ||
+        (verificationData?.issued_at as string),
+      mobile: verificationData?.mobile as string,
+      signature: verificationData?.signature as string,
+      referenceId:
+        (verificationData?.reference_id as string) || (verificationData?.referenceId as string),
+      passportType:
+        (verificationData?.currentPassportType as string) ||
+        (verificationData?.passport_type as string),
+      title: (verificationData?.currentTitle as string) || (verificationData?.title as string),
+      placeOfBirth:
+        (verificationData?.currentPlaceOfBirth as string) ||
+        (verificationData?.place_of_birth as string),
+      successful: verificationData?.successful as boolean,
       ...verificationData,
     };
   }

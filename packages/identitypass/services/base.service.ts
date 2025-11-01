@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosInstance } from 'axios';
 import { VerificationResponse } from '@porkate/valid8';
 import { IdentityPassVerificationResponse } from '../types';
@@ -25,20 +26,20 @@ export abstract class BaseIdentityPassService {
    * @param payload Request payload
    * @param mapData Function to map verification data to the expected format
    */
-  protected async makeRequest<T>(
+  protected async makeRequest<T, P = any, V = any>(
     endpoint: string,
-    payload: any,
-    mapData?: (verificationData: any, payload: any) => T
+    payload: P,
+    mapData?: (verificationData: V, payload: P) => T,
   ): Promise<VerificationResponse<T>> {
     try {
       const response = await this.client.post<IdentityPassVerificationResponse>(endpoint, payload);
 
-      const isSuccess = !!(response.data.status && response.data.verification?.status);
-      const verificationData = response.data.verification;
+      const isSuccess = !!(response?.data?.status && response?.data?.verification?.status);
+      const verificationData = response?.data?.verification;
 
       let data: T | undefined = undefined;
       if (verificationData && mapData) {
-        data = mapData(verificationData, payload);
+        data = mapData(verificationData as V, payload);
       } else if (verificationData) {
         data = verificationData as T;
       }
@@ -46,18 +47,18 @@ export abstract class BaseIdentityPassService {
       return {
         success: isSuccess,
         data,
-        message: response.data.detail,
+        message: response?.data?.detail,
         provider: this.providerName,
         timestamp: new Date(),
-        meta: response.data, // Include original response
+        meta: response?.data, // Include original response
       };
     } catch (error: any) {
       return {
         success: false,
-        error: error.message,
+        error: error?.message,
         provider: this.providerName,
         timestamp: new Date(),
-        meta: error.response?.data,
+        meta: error?.response?.data,
       };
     }
   }
