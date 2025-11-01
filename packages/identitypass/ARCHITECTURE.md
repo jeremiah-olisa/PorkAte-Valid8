@@ -169,17 +169,75 @@ Handles Bank Verification Number (BVN) verifications:
 - `verifyBVNWithFace()` - BVN verification with face matching
 - `getBVNByPhoneNumber()` - Get BVN details by phone number
 
-### Other Services (To Be Implemented)
-- `ICACVerificationService` - Company/CAC verifications
-- `IPassportVerificationService` - International passport verifications
-- `IDriversLicenseVerificationService` - Driver's license verifications
-- `IPhoneVerificationService` - Phone number verifications
-- `IBankAccountVerificationService` - Bank account verifications
-- `IVehicleVerificationService` - Vehicle/VIN verifications
-- `ITaxVerificationService` - TIN and stamp duty verifications
-- `IVotersCardVerificationService` - Voter's card verifications
-- `ICreditBureauVerificationService` - Credit bureau checks
-- `IOtherVerificationService` - Miscellaneous verifications (Address, NYSC, WAEC, etc.)
+### Other Services (All Implemented ✅)
+
+#### ICACVerificationService
+Handles Corporate Affairs Commission (CAC) verifications:
+- `verifyCAC()` - Basic CAC verification
+- `verifyCACAdvance()` - Advanced CAC with directors/shareholders
+- `searchCompanyByName()` - Search companies by name
+- `searchCompanyByPerson()` - Search companies by person
+- `searchCompanyByRegistrationNumber()` - Search by RC number
+
+#### IPassportVerificationService
+Handles international passport verifications:
+- `verifyPassport()` - Basic passport verification
+- `verifyPassportV2()` - V2 endpoint
+- `verifyPassportWithFace()` - With face matching
+- `verifyPassportImage()` - Document image verification
+
+#### IDriversLicenseVerificationService
+Handles driver's license verifications:
+- `verifyDriversLicense()` - Basic verification
+- `verifyDriversLicenseAdvance()` - Advanced with history
+- `verifyDriversLicenseWithFace()` - With face matching
+- `verifyDriversLicenseImage()` - Document image verification
+- `verifyDriversLicenseV2()` - V2 endpoint
+
+#### IPhoneVerificationService
+Handles phone number verifications:
+- `verifyPhoneNumber()` - Basic phone verification
+- `verifyPhoneNumberAdvance()` - Advanced with carrier info
+
+#### IBankAccountVerificationService
+Handles bank account verifications:
+- `verifyBankAccount()` - Basic account verification
+- `verifyBankAccountAdvance()` - Advanced with balance
+- `compareBankAccount()` - Compare with name
+- `listBankCodes()` - Get supported bank codes
+
+#### IVehicleVerificationService
+Handles vehicle verifications:
+- `verifyVehicle()` - General vehicle verification
+- `verifyVINChasis()` - By VIN/Chassis number
+- `verifyPlateNumber()` - By plate number
+
+#### ITaxVerificationService
+Handles tax verifications:
+- `verifyTIN()` - TIN verification
+- `verifyStampDuty()` - Stamp duty verification
+
+#### IVotersCardVerificationService
+Handles voter's card verifications:
+- `verifyVotersCard()` - Basic voter's card verification
+
+#### ICreditBureauVerificationService
+Handles credit bureau checks:
+- `verifyCreditBureau()` - Basic credit check
+- `verifyCreditBureauConsumerBasic()` - Consumer basic
+- `verifyCreditBureauConsumerAdvance()` - Consumer advanced
+- `verifyCreditBureauCommercialBasic()` - Commercial basic
+- `verifyCreditBureauCommercialAdvance()` - Commercial advanced
+
+#### IOtherVerificationService
+Handles miscellaneous verifications:
+- `verifyAddress()` - Address verification
+- `verifyNYSC()` - NYSC certificate
+- `verifyInsurancePolicy()` - Insurance policy
+- `verifyNationalID()` - National ID
+- `verifyWAEC()` - WAEC results
+- `verifyDocument()` - General document
+- `verifyDocumentWithFace()` - Document with face matching
 
 ## Creating Your Own Specialized Service
 
