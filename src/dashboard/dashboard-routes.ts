@@ -64,12 +64,12 @@ export class DashboardRoutes {
   handleGetDashboard = (req: any, res: any) => {
     try {
       const data = this.provider.getDashboardData();
-      res.json({
+      res?.json({
         success: true,
         data,
       });
     } catch (error) {
-      res.status(500).json({
+      res?.status(500)?.json({
         success: false,
         error: (error as Error).message,
       });

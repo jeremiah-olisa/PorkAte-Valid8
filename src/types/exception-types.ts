@@ -1,0 +1,16 @@
+export enum ExceptionCode {
+  CONFIGURATION_ERROR = 'CONFIGURATION_ERROR',
+  NOT_READY = 'NOT_READY',
+  VERIFICATION_FAILED = 'VERIFICATION_FAILED',
+  ADAPTER_NOT_FOUND = 'ADAPTER_NOT_FOUND',
+  METHOD_NOT_IMPLEMENTED = 'METHOD_NOT_IMPLEMENTED',
+}
+
+export enum ExceptionName {
+  VERIFICATION_EXCEPTION = 'VerificationException',
+  VERIFICATION_CONFIGURATION_EXCEPTION = 'VerificationConfigurationException',
+  VERIFICATION_NOT_READY_EXCEPTION = 'VerificationNotReadyException',
+  VERIFICATION_FAILED_EXCEPTION = 'VerificationFailedException',
+  ADAPTER_NOT_FOUND_EXCEPTION = 'AdapterNotFoundException',
+  METHOD_NOT_IMPLEMENTED_EXCEPTION = 'MethodNotImplementedException',
+}

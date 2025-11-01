@@ -6,7 +6,7 @@ import {
 } from '../types/event-types';
 
 export interface EventListener<T extends EventData = EventData> {
-  (data: T): void | Promise<void>;
+  (...args: any[]): void | Promise<void>;
 }
 
 export interface EventSubscription {

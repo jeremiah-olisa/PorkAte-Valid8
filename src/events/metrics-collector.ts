@@ -20,6 +20,7 @@ export interface ServiceMetrics {
   minResponseTime: number;
   maxResponseTime: number;
   errorRate: number;
+  uptime: number;
   lastRequest?: Date;
   lastSuccess?: Date;
   lastFailure?: Date;
@@ -182,6 +183,11 @@ export class MetricsCollector {
 
     serviceMetrics.lastRequest = new Date();
     overallMetrics.lastRequest = new Date();
+
+    // Update uptime
+    const currentUptime = Date.now() - this.startTime.getTime();
+    serviceMetrics.uptime = currentUptime;
+    overallMetrics.uptime = currentUptime;
   }
 
   /**
@@ -334,6 +340,7 @@ export class MetricsCollector {
       minResponseTime: 0,
       maxResponseTime: 0,
       errorRate: 0,
+      uptime: 0,
     };
   }
 
