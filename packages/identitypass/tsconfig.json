@@ -14,9 +14,8 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node16",
     "resolveJsonModule": true,
-    "strictPropertyInitialization": false,
-    "ignoreDeprecations": "5.0"
+    "strictPropertyInitialization": false
   },
-  "include": ["./**/*"],
+  "include": ["./**/*.ts"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
 }
