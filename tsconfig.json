@@ -5,8 +5,7 @@
     "lib": ["ES2020"],
     "declaration": true,
     "declarationMap": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "composite": true,
     "removeComments": true,
     "strict": true,
     "esModuleInterop": true,
@@ -16,8 +15,22 @@
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "baseUrl": ".",
+    "paths": {
+      "@porkate/valid8": ["packages/core"],
+      "@porkate/valid8-identitypass": ["packages/identitypass"],
+      "@porkate/valid8-dashboard": ["packages/dashboard"],
+      "@porkate/valid8-nest": ["packages/nest"]
+    }
   },
-  "include": ["src/**/*"],
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/identitypass" },
+    { "path": "./packages/dashboard" },
+    { "path": "./packages/nest" }
+  ],
+  "files": [],
+  "include": [],
   "exclude": ["node_modules", "dist", "tests"]
 }

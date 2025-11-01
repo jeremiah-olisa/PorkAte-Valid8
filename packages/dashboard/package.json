@@ -1,0 +1,36 @@
+{
+  "name": "@porkate/valid8-dashboard",
+  "version": "1.0.0",
+  "description": "Hangfire-style dashboard for @porkate/valid8 verification system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "keywords": [
+    "dashboard",
+    "monitoring",
+    "verification",
+    "analytics"
+  ],
+  "author": "Porkate",
+  "license": "MIT",
+  "dependencies": {
+    "@porkate/valid8": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "@porkate/valid8": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

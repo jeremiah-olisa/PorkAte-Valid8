@@ -1,0 +1,42 @@
+{
+  "name": "@porkate/valid8-nest",
+  "version": "1.0.0",
+  "description": "NestJS integration for @porkate/valid8 verification system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "keywords": [
+    "nestjs",
+    "verification",
+    "kyc",
+    "kyb"
+  ],
+  "author": "Porkate",
+  "license": "MIT",
+  "dependencies": {
+    "@porkate/valid8": "workspace:*"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^10.3.0",
+    "@nestjs/core": "^10.3.0",
+    "@types/node": "^20.10.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@porkate/valid8": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

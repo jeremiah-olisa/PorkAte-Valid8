@@ -1,0 +1,35 @@
+{
+  "name": "@porkate/valid8",
+  "version": "1.0.0",
+  "description": "Core verification manager and interfaces for KYC/KYB verification",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "keywords": [
+    "kyc",
+    "kyb",
+    "verification",
+    "identity",
+    "events",
+    "monitoring"
+  ],
+  "author": "Porkate",
+  "license": "MIT",
+  "dependencies": {
+    "eventemitter3": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
