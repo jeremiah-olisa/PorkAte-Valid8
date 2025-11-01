@@ -15,7 +15,6 @@ import {
 } from '@porkate/valid8';
 import {
   IdentityPassConfig,
-  IdentityPassVerificationRequest,
   IdentityPassVerificationResponse,
 } from './types';
 
@@ -141,6 +140,7 @@ export class IdentityPassAdapter implements IVerificationAdapter {
         error: error.message,
         provider: this.providerName,
         timestamp: new Date(),
+        meta: error.response?.data, // Include error response
       };
     }
   }
@@ -154,6 +154,7 @@ export class IdentityPassAdapter implements IVerificationAdapter {
       message: data.detail,
       provider: this.providerName,
       timestamp: new Date(),
+      meta: data, // Include original IdentityPass response
     };
   }
 }

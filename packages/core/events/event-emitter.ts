@@ -5,7 +5,9 @@ import {
   BaseEventData,
 } from '../types/event-types';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface EventListener<T extends EventData = EventData> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (...args: any[]): void | Promise<void>;
 }
 
