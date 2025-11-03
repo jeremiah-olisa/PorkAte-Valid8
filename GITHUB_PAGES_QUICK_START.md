@@ -2,8 +2,15 @@
 
 ## 3 Simple Steps
 
-### 1️⃣ Enable GitHub Pages
-Go to: **Settings** → **Pages** → Set Source to **"GitHub Actions"**
+### 1️⃣ Enable GitHub Pages (IMPORTANT!)
+**You MUST do this first manually:**
+
+1. Go to: https://github.com/jeremiah-olisa/PorkAte-Valid8/settings/pages
+2. Under **"Build and deployment"**:
+   - **Source**: Select **"GitHub Actions"** (NOT "Deploy from a branch")
+3. Click **Save**
+
+![Select GitHub Actions as source](https://docs.github.com/assets/cb-49559/mw-1440/images/help/pages/pages-settings-source.webp)
 
 ### 2️⃣ Push the Code
 ```bash
@@ -30,4 +37,12 @@ The workflow will automatically:
 
 ---
 
-For detailed instructions, see [DEPLOYING_TO_GITHUB_PAGES.md](./DEPLOYING_TO_GITHUB_PAGES.md)
+## ⚠️ Important Notes
+
+- **Step 1 is REQUIRED**: You must enable GitHub Pages in settings before the workflow can deploy
+- **Select "GitHub Actions"**: Don't select "Deploy from a branch" - it won't work
+- **Wait for first deployment**: The first deployment takes 2-3 minutes
+
+---
+
+For detailed instructions, see [DEPLOYING_TO_GITHUB_PAGES.md](./docs/DEPLOYING_TO_GITHUB_PAGES.md)
