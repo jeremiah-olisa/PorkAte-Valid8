@@ -38,6 +38,7 @@ export class IdentityPassAdapter implements IVerificationAdapter {
       timeout: this.config.timeout,
       headers: {
         'x-api-key': this.config.apiKey,
+        'app-id': this.config.appId,
         'Content-Type': 'application/json',
       },
     });
@@ -123,7 +124,7 @@ export class IdentityPassAdapter implements IVerificationAdapter {
   }
 
   isReady(): boolean {
-    return !!this.config.apiKey;
+    return !!this.config.apiKey && !!this.config.appId;
   }
 
   private async makeRequest(endpoint: string, payload: any): Promise<VerificationResponse> {

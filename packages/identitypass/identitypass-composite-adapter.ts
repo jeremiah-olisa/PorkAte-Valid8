@@ -63,6 +63,7 @@ export class IdentityPassCompositeAdapter implements ICompositeVerificationAdapt
       timeout: this.config.timeout,
       headers: {
         'x-api-key': this.config.apiKey,
+        'app-id': this.config.appId,
         'Content-Type': 'application/json',
       },
     });
@@ -73,7 +74,7 @@ export class IdentityPassCompositeAdapter implements ICompositeVerificationAdapt
   }
 
   isReady(): boolean {
-    return !!this.config.apiKey;
+    return !!this.config.apiKey && !!this.config.appId;
   }
 
   getNINService(): ININVerificationService {

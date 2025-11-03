@@ -4,6 +4,7 @@ import { Valid8Service } from './valid8.service';
 
 export interface Valid8ModuleOptions {
   config: VerificationManagerConfig;
+  factories?: Record<string, (config: any) => any>;
 }
 
 @Module({})
@@ -12,7 +13,16 @@ export class Valid8Module {
     const verificationManagerProvider: Provider = {
       provide: VerificationManager,
       useFactory: () => {
-        return new VerificationManager(options.config);
+        const manager = new VerificationManager(options.config);
+        
+        // Register any provided adapter factories
+        if (options.factories) {
+          Object.entries(options.factories).forEach(([name, factory]) => {
+            manager.registerFactory(name, factory);
+          });
+        }
+        
+        return manager;
       },
     };
 
@@ -25,14 +35,23 @@ export class Valid8Module {
   }
 
   static forRootAsync(options: {
-    useFactory: (...args: any[]) => Promise<VerificationManagerConfig> | VerificationManagerConfig;
+    useFactory: (...args: any[]) => Promise<Valid8ModuleOptions> | Valid8ModuleOptions;
     inject?: any[];
   }): DynamicModule {
     const verificationManagerProvider: Provider = {
       provide: VerificationManager,
       useFactory: async (...args: any[]) => {
-        const config = await options.useFactory(...args);
-        return new VerificationManager(config);
+        const moduleOptions = await options.useFactory(...args);
+        const manager = new VerificationManager(moduleOptions.config);
+        
+        // Register any provided adapter factories
+        if (moduleOptions.factories) {
+          Object.entries(moduleOptions.factories).forEach(([name, factory]) => {
+            manager.registerFactory(name, factory);
+          });
+        }
+        
+        return manager;
       },
       inject: options.inject || [],
     };
