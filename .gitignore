@@ -114,6 +114,9 @@ temp/
 
 # Documentation builds
 docs/_build/
+docs/html/
+docs/markdown/*.md
+!docs/markdown/README.md
 
 # Misc
 .turbo/
