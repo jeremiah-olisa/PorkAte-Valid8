@@ -1,4 +1,4 @@
-# Quick Start Guide - @porkate/valid8 NestJS Example
+# Quick Start Guide - porkate-valid8 NestJS Example
 
 ## Installation from GitHub
 
@@ -35,9 +35,9 @@ Add the following to your `package.json`:
 ```json
 {
   "dependencies": {
-    "@porkate/valid8": "github:jeremiah-olisa/PorkAte-Valid8#main:packages/core",
-    "@porkate/valid8-identitypass": "github:jeremiah-olisa/PorkAte-Valid8#main:packages/identitypass",
-    "@porkate/valid8-nest": "github:jeremiah-olisa/PorkAte-Valid8#main:packages/nest"
+    "porkate-valid8": "github:jeremiah-olisa/PorkAte-Valid8#main:packages/core",
+    "porkate-valid8-identitypass": "github:jeremiah-olisa/PorkAte-Valid8#main:packages/identitypass",
+    "porkate-valid8-nest": "github:jeremiah-olisa/PorkAte-Valid8#main:packages/nest"
   }
 }
 ```
@@ -268,9 +268,9 @@ IDENTITY_PASS_TIMEOUT=30000
 
 For detailed documentation, see:
 - [Main README](./README.md)
-- [@porkate/valid8 Core](../../packages/core/README.md)
-- [@porkate/valid8-identitypass](../../packages/identitypass/README.md)
-- [@porkate/valid8-nest](../../packages/nest/README.md)
+- [porkate-valid8 Core](../../packages/core/README.md)
+- [porkate-valid8-identitypass](../../packages/identitypass/README.md)
+- [porkate-valid8-nest](../../packages/nest/README.md)
 
 ## Troubleshooting
 

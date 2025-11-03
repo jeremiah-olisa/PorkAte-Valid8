@@ -1,5 +1,5 @@
 {
-  "name": "@porkate/valid8-monorepo",
+  "name": "porkate-valid8-monorepo",
   "version": "1.0.0",
   "private": true,
   "description": "A flexible TypeScript KYC/KYB verification package with multiple service adapters and comprehensive event logging",
@@ -11,11 +11,16 @@
     "test:coverage": "lerna run test:coverage",
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
+    "type-check": "lerna run type-check",
     "format": "prettier --write \"packages/**/*.ts\"",
     "clean": "lerna clean -y && rm -rf node_modules",
     "bootstrap": "lerna bootstrap",
     "version": "lerna version",
-    "publish": "lerna publish"
+    "publish": "lerna publish",
+    "version:patch": "./scripts/bump-version.sh patch",
+    "version:minor": "./scripts/bump-version.sh minor",
+    "version:major": "./scripts/bump-version.sh major",
+    "publish:local": "pnpm run build && pnpm publish -r --access public"
   },
   "keywords": [
     "kyc",

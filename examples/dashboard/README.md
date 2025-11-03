@@ -1,4 +1,4 @@
-# @porkate/valid8 Dashboard & Events
+# porkate-valid8 Dashboard & Events
 
 This package includes comprehensive event logging and monitoring capabilities similar to Hangfire UI.
 
@@ -32,9 +32,9 @@ This package includes comprehensive event logging and monitoring capabilities si
 
 ```typescript
 import express from 'express';
-import { globalEventEmitter } from '@porkate/valid8/events';
-import { DashboardDataProvider } from '@porkate/valid8/dashboard';
-import { EventLogger, LogLevel } from '@porkate/valid8/events';
+import { globalEventEmitter } from 'porkate-valid8/events';
+import { DashboardDataProvider } from 'porkate-valid8/dashboard';
+import { EventLogger, LogLevel } from 'porkate-valid8/events';
 
 const app = express();
 
@@ -75,7 +75,7 @@ app.listen(3000);
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { Valid8DashboardModule } from '@porkate/valid8/nest';
+import { Valid8DashboardModule } from 'porkate-valid8/nest';
 
 @Module({
   imports: [Valid8DashboardModule],
@@ -124,8 +124,8 @@ export class AppModule {}
 ### Listen to Specific Events
 
 ```typescript
-import { globalEventEmitter } from '@porkate/valid8/events';
-import { VerificationEventType } from '@porkate/valid8/types';
+import { globalEventEmitter } from 'porkate-valid8/events';
+import { VerificationEventType } from 'porkate-valid8/types';
 
 // Listen to successful verifications
 globalEventEmitter.on(
@@ -278,7 +278,7 @@ globalEventEmitter.on('adapter.fallback', async (data) => {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>@porkate/valid8 Dashboard</title>
+  <title>porkate-valid8 Dashboard</title>
   <style>
     .metric { padding: 20px; border: 1px solid #ddd; margin: 10px; }
     .success { color: green; }

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Valid8Module } from '@porkate/valid8-nest';
-import { IdentityPassCompositeAdapter } from '@porkate/valid8-identitypass';
+import { Valid8Module } from 'porkate-valid8-nest';
+import { IdentityPassCompositeAdapter } from 'porkate-valid8-identitypass';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { VerificationModule } from './verification/verification.module';

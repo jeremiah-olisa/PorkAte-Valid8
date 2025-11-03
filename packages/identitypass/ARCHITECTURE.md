@@ -44,7 +44,7 @@ IdentityPassCompositeAdapter implements ICompositeVerificationAdapter
 ### Using the New Composite Adapter
 
 ```typescript
-import { IdentityPassCompositeAdapter } from '@porkate/valid8-identitypass';
+import { IdentityPassCompositeAdapter } from 'porkate-valid8-identitypass';
 
 const adapter = new IdentityPassCompositeAdapter({
   apiKey: 'your-api-key'
@@ -90,7 +90,7 @@ if (bvnService) {
 ### Using Legacy Adapter (Backward Compatible)
 
 ```typescript
-import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
+import { IdentityPassAdapter } from 'porkate-valid8-identitypass';
 
 const adapter = new IdentityPassAdapter({
   apiKey: 'your-api-key'
@@ -242,8 +242,8 @@ Handles miscellaneous verifications:
 ## Creating Your Own Specialized Service
 
 ```typescript
-import { BaseIdentityPassService } from '@porkate/valid8-identitypass';
-import { IMyCustomService, MyVerificationData, VerificationResponse } from '@porkate/valid8';
+import { BaseIdentityPassService } from 'porkate-valid8-identitypass';
+import { IMyCustomService, MyVerificationData, VerificationResponse } from 'porkate-valid8';
 
 export class IdentityPassMyCustomService 
   extends BaseIdentityPassService 
@@ -324,7 +324,7 @@ try {
 ## Testing
 
 ```typescript
-import { IdentityPassCompositeAdapter } from '@porkate/valid8-identitypass';
+import { IdentityPassCompositeAdapter } from 'porkate-valid8-identitypass';
 
 describe('NIN Verification', () => {
   let adapter: IdentityPassCompositeAdapter;
@@ -356,8 +356,8 @@ describe('NIN Verification', () => {
 
 When adding new specialized services:
 
-1. Create interface in `@porkate/valid8/interfaces/verification-services/`
-2. Create service implementation in `@porkate/valid8-identitypass/services/`
+1. Create interface in `porkate-valid8/interfaces/verification-services/`
+2. Create service implementation in `porkate-valid8-identitypass/services/`
 3. Extend `BaseIdentityPassService` for shared functionality
 4. Add getter method in `IdentityPassCompositeAdapter`
 5. Update this documentation

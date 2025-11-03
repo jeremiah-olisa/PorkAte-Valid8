@@ -1,7 +1,7 @@
 import { Injectable, Logger, BadRequestException } from '@nestjs/common';
-import { Valid8Service } from '@porkate/valid8-nest';
-import { VerificationResponse } from '@porkate/valid8';
-import { IdentityPassCompositeAdapter } from '@porkate/valid8-identitypass';
+import { Valid8Service } from 'porkate-valid8-nest';
+import { VerificationResponse } from 'porkate-valid8';
+import { IdentityPassCompositeAdapter } from 'porkate-valid8-identitypass';
 import * as dto from './dto';
 
 @Injectable()

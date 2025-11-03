@@ -18,10 +18,10 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
-      "@porkate/valid8": ["packages/core"],
-      "@porkate/valid8-identitypass": ["packages/identitypass"],
-      "@porkate/valid8-dashboard": ["packages/dashboard"],
-      "@porkate/valid8-nest": ["packages/nest"]
+      "porkate-valid8": ["packages/core"],
+      "porkate-valid8-identitypass": ["packages/identitypass"],
+      "porkate-valid8-dashboard": ["packages/dashboard"],
+      "porkate-valid8-nest": ["packages/nest"]
     }
   },
   "references": [

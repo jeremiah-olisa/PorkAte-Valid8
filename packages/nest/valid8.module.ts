@@ -1,5 +1,5 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
-import { VerificationManager, VerificationManagerConfig } from '@porkate/valid8';
+import { VerificationManager, VerificationManagerConfig } from 'porkate-valid8';
 import { Valid8Service } from './valid8.service';
 
 export interface Valid8ModuleOptions {

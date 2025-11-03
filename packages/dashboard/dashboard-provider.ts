@@ -1,12 +1,12 @@
-import { VerificationEventEmitter } from '@porkate/valid8';
-import { MetricsCollector, MetricsSnapshot } from '@porkate/valid8';
+import { VerificationEventEmitter } from 'porkate-valid8';
+import { MetricsCollector, MetricsSnapshot } from 'porkate-valid8';
 import {
   VerificationEventType,
   EventData,
   VerificationEventData,
   ServiceType,
   VerificationStatus,
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 
 export interface DashboardConfig {
   enableRealtime?: boolean;

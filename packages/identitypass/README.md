@@ -1,15 +1,15 @@
-# @porkate/valid8-identitypass
+# porkate-valid8-identitypass
 
 IdentityPass adapter for the Valid8 KYC/KYB verification framework. Provides Nigerian identity verification services including NIN, BVN, CAC, and more.
 
 ## Installation
 
 ```bash
-npm install @porkate/valid8-identitypass @porkate/valid8
+npm install porkate-valid8-identitypass porkate-valid8
 # or
-yarn add @porkate/valid8-identitypass @porkate/valid8
+yarn add porkate-valid8-identitypass porkate-valid8
 # or
-pnpm add @porkate/valid8-identitypass @porkate/valid8
+pnpm add porkate-valid8-identitypass porkate-valid8
 ```
 
 ## Features
@@ -41,7 +41,7 @@ pnpm add @porkate/valid8-identitypass @porkate/valid8
 ### Modern Approach (Recommended)
 
 ```typescript
-import { IdentityPassCompositeAdapter } from '@porkate/valid8-identitypass';
+import { IdentityPassCompositeAdapter } from 'porkate-valid8-identitypass';
 
 const adapter = new IdentityPassCompositeAdapter({
   apiKey: process.env.IDENTITY_PASS_API_KEY,
@@ -78,7 +78,7 @@ if (ninService) {
 ### Legacy Approach (Still Supported)
 
 ```typescript
-import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
+import { IdentityPassAdapter } from 'porkate-valid8-identitypass';
 
 const adapter = new IdentityPassAdapter({
   apiKey: process.env.IDENTITY_PASS_API_KEY,
@@ -550,8 +550,8 @@ if (ninService) {
 ## Integration with Verification Manager
 
 ```typescript
-import { VerificationManager } from '@porkate/valid8';
-import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
+import { VerificationManager } from 'porkate-valid8';
+import { IdentityPassAdapter } from 'porkate-valid8-identitypass';
 
 const manager = new VerificationManager({
   defaultAdapter: 'identitypass',
@@ -628,7 +628,7 @@ import type {
   IdentityPassCompositeAdapter,
   IdentityPassConfig,
   IdentityPassVerificationResponse,
-} from '@porkate/valid8-identitypass';
+} from 'porkate-valid8-identitypass';
 
 import type {
   NINVerificationRequest,
@@ -636,7 +636,7 @@ import type {
   BVNVerificationRequest,
   BVNVerificationData,
   VerificationResponse,
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 ```
 
 ## Testing
@@ -665,7 +665,7 @@ For detailed information about the specialized services architecture, see [ARCHI
 
 Contributions are welcome! To add new verification services:
 
-1. Create interface in `@porkate/valid8/interfaces/verification-services/`
+1. Create interface in `porkate-valid8/interfaces/verification-services/`
 2. Implement service class extending `BaseIdentityPassService`
 3. Add getter method in `IdentityPassCompositeAdapter`
 4. Update documentation
@@ -682,6 +682,6 @@ MIT
 
 ## Related Packages
 
-- [@porkate/valid8](../core) - Core verification manager
-- [@porkate/valid8-dashboard](../dashboard) - Monitoring dashboard
-- [@porkate/valid8-nest](../nest) - NestJS integration
+- [porkate-valid8](../core) - Core verification manager
+- [porkate-valid8-dashboard](../dashboard) - Monitoring dashboard
+- [porkate-valid8-nest](../nest) - NestJS integration

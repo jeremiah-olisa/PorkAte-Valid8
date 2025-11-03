@@ -3,7 +3,7 @@ import {
   VehicleVerificationRequest,
   VehicleVerificationData,
   VerificationResponse,
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 import { BaseIdentityPassService } from './base.service';
 
 /**

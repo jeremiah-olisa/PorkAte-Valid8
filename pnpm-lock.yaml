@@ -65,21 +65,21 @@ importers:
       '@nestjs/platform-express':
         specifier: ^11.0.1
         version: 11.1.8(@nestjs/common@11.1.8(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.8)
-      '@porkate/valid8':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@porkate/valid8-identitypass':
-        specifier: workspace:*
-        version: link:../../packages/identitypass
-      '@porkate/valid8-nest':
-        specifier: workspace:*
-        version: link:../../packages/nest
       class-transformer:
         specifier: ^0.5.1
         version: 0.5.1
       class-validator:
         specifier: ^0.14.0
         version: 0.14.2
+      porkate-valid8:
+        specifier: workspace:*
+        version: link:../../packages/core
+      porkate-valid8-identitypass:
+        specifier: workspace:*
+        version: link:../../packages/identitypass
+      porkate-valid8-nest:
+        specifier: workspace:*
+        version: link:../../packages/nest
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -172,7 +172,7 @@ importers:
 
   packages/dashboard:
     dependencies:
-      '@porkate/valid8':
+      porkate-valid8:
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -185,12 +185,12 @@ importers:
 
   packages/identitypass:
     dependencies:
-      '@porkate/valid8':
-        specifier: workspace:*
-        version: link:../core
       axios:
         specifier: ^1.6.0
         version: 1.13.1
+      porkate-valid8:
+        specifier: workspace:*
+        version: link:../core
     devDependencies:
       '@types/node':
         specifier: ^20.10.0
@@ -201,7 +201,7 @@ importers:
 
   packages/nest:
     dependencies:
-      '@porkate/valid8':
+      porkate-valid8:
         specifier: workspace:*
         version: link:../core
     devDependencies:

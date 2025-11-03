@@ -4,10 +4,10 @@ import { Injectable } from '@nestjs/common';
 export class AppService {
   getApiInfo() {
     return {
-      name: '@porkate/valid8 NestJS Example API',
+      name: 'porkate-valid8 NestJS Example API',
       version: '1.0.0',
       description:
-        'Comprehensive KYC/KYB verification API using @porkate/valid8 packages',
+        'Comprehensive KYC/KYB verification API using porkate-valid8 packages',
       endpoints: {
         health: 'GET /health',
         nin: {

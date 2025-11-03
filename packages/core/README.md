@@ -1,15 +1,15 @@
-# @porkate/valid8
+# porkate-valid8
 
 Core verification manager, interfaces, events system, and exceptions for the Valid8 KYC/KYB verification framework.
 
 ## Installation
 
 ```bash
-npm install @porkate/valid8
+npm install porkate-valid8
 # or
-yarn add @porkate/valid8
+yarn add porkate-valid8
 # or
-pnpm add @porkate/valid8
+pnpm add porkate-valid8
 ```
 
 ## Features
@@ -27,8 +27,8 @@ pnpm add @porkate/valid8
 ### Basic Setup
 
 ```typescript
-import { VerificationManager } from '@porkate/valid8';
-import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
+import { VerificationManager } from 'porkate-valid8';
+import { IdentityPassAdapter } from 'porkate-valid8-identitypass';
 
 // Create verification manager
 const manager = new VerificationManager({
@@ -67,7 +67,7 @@ console.log(result.meta);    // Original adapter response
 ### Using Specialized Services (Recommended)
 
 ```typescript
-import { IdentityPassCompositeAdapter } from '@porkate/valid8-identitypass';
+import { IdentityPassCompositeAdapter } from 'porkate-valid8-identitypass';
 
 const adapter = new IdentityPassCompositeAdapter({
   apiKey: process.env.IDENTITY_PASS_API_KEY,
@@ -136,7 +136,7 @@ interface VerificationResponse<T = any, M = any> {
 Track verification lifecycle with events:
 
 ```typescript
-import { VerificationEventEmitter } from '@porkate/valid8';
+import { VerificationEventEmitter } from 'porkate-valid8';
 
 const eventEmitter = new VerificationEventEmitter();
 
@@ -159,7 +159,7 @@ eventEmitter.on('verification:failed', (data) => {
 Collect and analyze verification metrics:
 
 ```typescript
-import { MetricsCollector } from '@porkate/valid8';
+import { MetricsCollector } from 'porkate-valid8';
 
 const metricsCollector = new MetricsCollector(eventEmitter);
 
@@ -178,7 +178,7 @@ const ninMetrics = metricsCollector.getMetricsByService('nin');
 Log verification activities:
 
 ```typescript
-import { EventLogger, LogLevel } from '@porkate/valid8';
+import { EventLogger, LogLevel } from 'porkate-valid8';
 
 const logger = new EventLogger(eventEmitter, {
   logLevel: LogLevel.INFO,
@@ -237,7 +237,7 @@ import {
   VerificationConfigurationException,
   AdapterNotFoundException,
   NotImplementedException,
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 
 try {
   const adapter = manager.getAdapter('unknown');
@@ -298,7 +298,7 @@ import type {
   NINVerificationRequest,
   NINVerificationData,
   // ... all other types
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 ```
 
 ## Testing
@@ -344,6 +344,6 @@ MIT
 
 ## Related Packages
 
-- [@porkate/valid8-identitypass](../identitypass) - IdentityPass adapter
-- [@porkate/valid8-dashboard](../dashboard) - Monitoring dashboard
-- [@porkate/valid8-nest](../nest) - NestJS integration
+- [porkate-valid8-identitypass](../identitypass) - IdentityPass adapter
+- [porkate-valid8-dashboard](../dashboard) - Monitoring dashboard
+- [porkate-valid8-nest](../nest) - NestJS integration

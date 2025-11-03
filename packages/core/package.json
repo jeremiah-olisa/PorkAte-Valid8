@@ -1,5 +1,5 @@
 {
-  "name": "@porkate/valid8",
+  "name": "porkate-valid8",
   "version": "1.0.0",
   "description": "Core verification manager and interfaces for KYC/KYB verification",
   "main": "dist/index.js",

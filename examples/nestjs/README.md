@@ -1,12 +1,12 @@
-# @porkate/valid8 NestJS Example
+# porkate-valid8 NestJS Example
 
-Comprehensive example demonstrating how to use the @porkate/valid8 packages in a NestJS application for KYC/KYB verification.
+Comprehensive example demonstrating how to use the porkate-valid8 packages in a NestJS application for KYC/KYB verification.
 
 ## Description
 
 This example showcases:
 - ✅ Installation from GitHub (not yet published to npm)
-- ✅ Integration with NestJS using `@porkate/valid8-nest`
+- ✅ Integration with NestJS using `porkate-valid8-nest`
 - ✅ All verification service types (NIN, BVN, CAC, Passport, Driver's License, etc.)
 - ✅ Proper error handling and validation
 - ✅ RESTful API endpoints for each verification type
@@ -47,7 +47,7 @@ pnpm add github:jeremiah-olisa/PorkAte-Valid8#main:\<path-to-packages\>
 npm install git+https://github.com/jeremiah-olisa/PorkAte-Valid8.git
 
 # Then install specific workspace packages
-pnpm add @porkate/valid8 @porkate/valid8-identitypass @porkate/valid8-nest
+pnpm add porkate-valid8 porkate-valid8-identitypass porkate-valid8-nest
 ```
 
 ### Option 3: Local development (from monorepo)
@@ -242,8 +242,8 @@ examples/nestjs/
 ### 1. Module Integration
 
 ```typescript
-import { Valid8Module } from '@porkate/valid8-nest';
-import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
+import { Valid8Module } from 'porkate-valid8-nest';
+import { IdentityPassAdapter } from 'porkate-valid8-identitypass';
 
 @Module({
   imports: [
@@ -324,7 +324,7 @@ node dist/main
 
 ## Troubleshooting
 
-### "Cannot find module '@porkate/valid8'"
+### "Cannot find module 'porkate-valid8'"
 
 Make sure you've built the packages:
 ```bash
@@ -347,9 +347,9 @@ If using this in your own project, ensure you have the correct paths in your `ts
 {
   "compilerOptions": {
     "paths": {
-      "@porkate/valid8": ["./node_modules/@porkate/valid8"],
-      "@porkate/valid8-identitypass": ["./node_modules/@porkate/valid8-identitypass"],
-      "@porkate/valid8-nest": ["./node_modules/@porkate/valid8-nest"]
+      "porkate-valid8": ["./node_modules/porkate-valid8"],
+      "porkate-valid8-identitypass": ["./node_modules/porkate-valid8-identitypass"],
+      "porkate-valid8-nest": ["./node_modules/porkate-valid8-nest"]
     }
   }
 }
@@ -357,9 +357,9 @@ If using this in your own project, ensure you have the correct paths in your `ts
 
 ## Documentation
 
-- [@porkate/valid8 Core](../../packages/core/README.md)
-- [@porkate/valid8-identitypass](../../packages/identitypass/README.md)
-- [@porkate/valid8-nest](../../packages/nest/README.md)
+- [porkate-valid8 Core](../../packages/core/README.md)
+- [porkate-valid8-identitypass](../../packages/identitypass/README.md)
+- [porkate-valid8-nest](../../packages/nest/README.md)
 - [NestJS Documentation](https://docs.nestjs.com)
 
 ## Support

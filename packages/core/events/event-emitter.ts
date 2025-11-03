@@ -16,7 +16,7 @@ export interface EventSubscription {
 }
 
 /**
- * Centralized Event Emitter for @porkate/valid8
+ * Centralized Event Emitter for porkate-valid8
  * Provides comprehensive event logging for monitoring and analytics
  */
 export class VerificationEventEmitter {

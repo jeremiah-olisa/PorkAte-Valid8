@@ -3,7 +3,7 @@ import {
   VotersCardVerificationRequest,
   VotersCardVerificationData,
   VerificationResponse,
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 import { BaseIdentityPassService } from './base.service';
 
 /**

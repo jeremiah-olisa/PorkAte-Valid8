@@ -13,7 +13,7 @@ import {
   IVotersCardVerificationService,
   ICreditBureauVerificationService,
   IOtherVerificationService,
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 import { IdentityPassConfig } from './types';
 import { IdentityPassNINService } from './services/nin-verification.service';
 import { IdentityPassBVNService } from './services/bvn-verification.service';

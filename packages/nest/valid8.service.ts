@@ -5,7 +5,7 @@ import {
   NINVerificationRequest,
   BVNVerificationRequest,
   VerificationResponse,
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 
 @Injectable()
 export class Valid8Service {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosInstance } from 'axios';
-import { VerificationResponse } from '@porkate/valid8';
+import { VerificationResponse } from 'porkate-valid8';
 import { IdentityPassVerificationResponse } from '../types';
 
 /**

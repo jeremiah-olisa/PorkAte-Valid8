@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
-import { ServiceType } from '@porkate/valid8';
+import { ServiceType } from 'porkate-valid8';
 
 export const VERIFY_METADATA_KEY = 'valid8:verify';
 

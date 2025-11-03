@@ -12,7 +12,7 @@ import {
   BankAccountVerificationRequest,
   CreditBureauVerificationRequest,
   VerificationResponse,
-} from '@porkate/valid8';
+} from 'porkate-valid8';
 import {
   IdentityPassConfig,
   IdentityPassVerificationResponse,
