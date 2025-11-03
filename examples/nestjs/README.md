@@ -1,98 +1,370 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# @porkate/valid8 NestJS Example
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Comprehensive example demonstrating how to use the @porkate/valid8 packages in a NestJS application for KYC/KYB verification.
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This example showcases:
+- ✅ Installation from GitHub (not yet published to npm)
+- ✅ Integration with NestJS using `@porkate/valid8-nest`
+- ✅ All verification service types (NIN, BVN, CAC, Passport, Driver's License, etc.)
+- ✅ Proper error handling and validation
+- ✅ RESTful API endpoints for each verification type
+- ✅ Environment configuration
+- ✅ TypeScript best practices
 
-## Project setup
+## Prerequisites
 
-```bash
-$ pnpm install
-```
+- Node.js >= 18
+- pnpm >= 8 (or npm/yarn)
 
-## Compile and run the project
+## Installation
 
-```bash
-# development
-$ pnpm run start
+Since the packages are not yet published to npm, you need to install them from GitHub:
 
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
-```
-
-## Run tests
+### Option 1: Install from GitHub directly
 
 ```bash
-# unit tests
-$ pnpm run test
+# Clone the main repository
+git clone https://github.com/jeremiah-olisa/PorkAte-Valid8.git
 
-# e2e tests
-$ pnpm run test:e2e
+# Navigate to the example directory
+cd PorkAte-Valid8/examples/nestjs
 
-# test coverage
-$ pnpm run test:cov
+# Install dependencies (this will use workspace references)
+pnpm install
 ```
 
-## Deployment
+### Option 2: Install packages from GitHub in your own project
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+If you want to use these packages in your own NestJS project:
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+# Install packages from GitHub
+pnpm add github:jeremiah-olisa/PorkAte-Valid8#main:\<path-to-packages\>
+
+# Or using npm
+npm install git+https://github.com/jeremiah-olisa/PorkAte-Valid8.git
+
+# Then install specific workspace packages
+pnpm add @porkate/valid8 @porkate/valid8-identitypass @porkate/valid8-nest
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Option 3: Local development (from monorepo)
 
-## Resources
+```bash
+# From the root of the monorepo
+pnpm install
+pnpm build
 
-Check out a few resources that may come in handy when working with NestJS:
+# Navigate to the example
+cd examples/nestjs
+pnpm install
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Configuration
+
+1. Copy the environment template:
+
+```bash
+cp .env.example .env
+```
+
+2. Update the `.env` file with your IdentityPass API credentials:
+
+```env
+PORT=3000
+NODE_ENV=development
+
+# Get your API key from https://myidentitypass.com
+IDENTITY_PASS_API_KEY=your_identity_pass_api_key_here
+IDENTITY_PASS_BASE_URL=https://api.myidentitypass.com
+IDENTITY_PASS_TIMEOUT=30000
+```
+
+## Running the Application
+
+```bash
+# Development mode with hot reload
+pnpm run start:dev
+
+# Production mode
+pnpm run start:prod
+
+# Debug mode
+pnpm run start:debug
+```
+
+The API will be available at `http://localhost:3000`
+
+## Available Endpoints
+
+### Health Check
+- `GET /` - Returns API status
+
+### NIN Verification
+- `POST /verification/nin` - Basic NIN verification
+- `POST /verification/nin/face` - NIN verification with face matching
+- `POST /verification/nin/slip` - NIN slip verification
+- `POST /verification/nin/virtual` - Virtual NIN verification
+
+### BVN Verification
+- `POST /verification/bvn` - Basic BVN verification
+- `POST /verification/bvn/advance` - Advanced BVN verification
+- `POST /verification/bvn/face` - BVN verification with face matching
+- `POST /verification/bvn/phone` - Get BVN by phone number
+
+### CAC (Company) Verification
+- `POST /verification/cac` - Basic CAC verification
+- `POST /verification/cac/advance` - Advanced CAC verification with directors
+- `POST /verification/cac/search-name` - Search company by name
+- `POST /verification/cac/search-rc` - Search company by RC number
+
+### Driver's License Verification
+- `POST /verification/drivers-license` - Basic driver's license verification
+- `POST /verification/drivers-license/face` - Driver's license with face matching
+- `POST /verification/drivers-license/advance` - Advanced verification
+
+### Passport Verification
+- `POST /verification/passport` - Basic passport verification
+- `POST /verification/passport/face` - Passport with face matching
+
+### Phone Verification
+- `POST /verification/phone` - Basic phone verification
+- `POST /verification/phone/advance` - Advanced phone verification
+
+### Bank Account Verification
+- `POST /verification/bank-account` - Basic bank account verification
+- `POST /verification/bank-account/compare` - Compare account with name
+- `GET /verification/bank-account/codes` - List bank codes
+
+### Vehicle Verification
+- `POST /verification/vehicle/plate` - Verify by plate number
+- `POST /verification/vehicle/vin` - Verify by VIN/Chassis
+
+### Tax Verification
+- `POST /verification/tax/tin` - TIN verification
+- `POST /verification/tax/stamp-duty` - Stamp duty verification
+
+### Voter's Card Verification
+- `POST /verification/voters-card` - Voter's card verification
+
+### Credit Bureau
+- `POST /verification/credit/consumer-basic` - Consumer credit basic
+- `POST /verification/credit/consumer-advance` - Consumer credit advanced
+- `POST /verification/credit/commercial-basic` - Commercial credit basic
+
+### Other Verifications
+- `POST /verification/other/address` - Address verification
+- `POST /verification/other/nysc` - NYSC verification
+- `POST /verification/other/waec` - WAEC verification
+
+## API Examples
+
+### NIN Verification
+
+```bash
+curl -X POST http://localhost:3000/verification/nin \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nin": "12345678901",
+    "firstName": "John",
+    "lastName": "Doe",
+    "dateOfBirth": "1990-01-01"
+  }'
+```
+
+Response:
+```json
+{
+  "success": true,
+  "data": {
+    "nin": "12345678901",
+    "firstName": "John",
+    "lastName": "Doe",
+    "middleName": "Smith",
+    "dateOfBirth": "1990-01-01",
+    "gender": "Male",
+    "phoneNumber": "+2348012345678",
+    "photo": "base64-encoded-photo",
+    "address": "123 Main St, Lagos"
+  },
+  "message": "NIN verification successful",
+  "provider": "identitypass",
+  "timestamp": "2024-01-01T00:00:00.000Z"
+}
+```
+
+### BVN Verification with Face
+
+```bash
+curl -X POST http://localhost:3000/verification/bvn/face \
+  -H "Content-Type: application/json" \
+  -d '{
+    "bvn": "12345678901",
+    "image": "base64-encoded-face-image"
+  }'
+```
+
+### CAC Verification
+
+```bash
+curl -X POST http://localhost:3000/verification/cac \
+  -H "Content-Type: application/json" \
+  -d '{
+    "rcNumber": "RC1234567"
+  }'
+```
+
+## Project Structure
+
+```
+examples/nestjs/
+├── src/
+│   ├── verification/
+│   │   ├── dto/                    # Data Transfer Objects
+│   │   │   ├── nin.dto.ts
+│   │   │   ├── bvn.dto.ts
+│   │   │   ├── cac.dto.ts
+│   │   │   └── ...
+│   │   ├── verification.controller.ts  # API endpoints
+│   │   ├── verification.service.ts     # Business logic
+│   │   └── verification.module.ts      # Module definition
+│   ├── app.module.ts               # Root module
+│   └── main.ts                     # Application entry point
+├── .env.example                    # Environment template
+└── README.md                       # This file
+```
+
+## Key Features Demonstrated
+
+### 1. Module Integration
+
+```typescript
+import { Valid8Module } from '@porkate/valid8-nest';
+import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
+
+@Module({
+  imports: [
+    Valid8Module.forRootAsync({
+      useFactory: (configService: ConfigService) => ({
+        defaultAdapter: 'identitypass',
+        enableFallback: false,
+        adapters: [
+          {
+            name: 'identitypass',
+            enabled: true,
+            priority: 1,
+            config: {
+              apiKey: configService.get('IDENTITY_PASS_API_KEY'),
+              baseUrl: configService.get('IDENTITY_PASS_BASE_URL'),
+              timeout: configService.get('IDENTITY_PASS_TIMEOUT'),
+            },
+          },
+        ],
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+### 2. Using Specialized Services
+
+```typescript
+const adapter = this.valid8Service.getDefaultAdapter();
+if (adapter && 'getNINService' in adapter) {
+  const ninService = adapter.getNINService();
+  if (ninService) {
+    const result = await ninService.verifyNIN(dto);
+    return result;
+  }
+}
+```
+
+### 3. Error Handling
+
+```typescript
+try {
+  const result = await this.verificationService.verifyNIN(dto);
+  if (!result.success) {
+    throw new BadRequestException(result.error || 'Verification failed');
+  }
+  return result;
+} catch (error) {
+  throw new BadRequestException(error.message);
+}
+```
+
+## Testing
+
+```bash
+# Unit tests
+pnpm run test
+
+# E2E tests
+pnpm run test:e2e
+
+# Test coverage
+pnpm run test:cov
+```
+
+## Building for Production
+
+```bash
+# Build the application
+pnpm run build
+
+# Run the built application
+node dist/main
+```
+
+## Troubleshooting
+
+### "Cannot find module '@porkate/valid8'"
+
+Make sure you've built the packages:
+```bash
+cd ../..  # Go to monorepo root
+pnpm build
+```
+
+### "IDENTITY_PASS_API_KEY is not defined"
+
+Make sure you've created a `.env` file with your API key:
+```bash
+cp .env.example .env
+# Edit .env with your credentials
+```
+
+### Module resolution errors
+
+If using this in your own project, ensure you have the correct paths in your `tsconfig.json`:
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@porkate/valid8": ["./node_modules/@porkate/valid8"],
+      "@porkate/valid8-identitypass": ["./node_modules/@porkate/valid8-identitypass"],
+      "@porkate/valid8-nest": ["./node_modules/@porkate/valid8-nest"]
+    }
+  }
+}
+```
+
+## Documentation
+
+- [@porkate/valid8 Core](../../packages/core/README.md)
+- [@porkate/valid8-identitypass](../../packages/identitypass/README.md)
+- [@porkate/valid8-nest](../../packages/nest/README.md)
+- [NestJS Documentation](https://docs.nestjs.com)
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- GitHub Issues: [PorkAte-Valid8](https://github.com/jeremiah-olisa/PorkAte-Valid8/issues)
+- NestJS Discord: [https://discord.gg/G7Qnnhy](https://discord.gg/G7Qnnhy)
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+MIT
