@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Valid8Module } from '@porkate/valid8-nest';
-import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
+import { IdentityPassCompositeAdapter } from '@porkate/valid8-identitypass';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { VerificationModule } from './verification/verification.module';
@@ -24,42 +24,33 @@ import { VerificationModule } from './verification/verification.module';
         }
 
         return {
-          defaultAdapter: 'identitypass',
-          enableFallback: false,
-          adapters: [
-            {
-              name: 'identitypass',
-              enabled: true,
-              priority: 1,
-              config: {
-                apiKey,
-                baseUrl: configService.get<string>('IDENTITY_PASS_BASE_URL', 'https://api.myidentitypass.com'),
-                timeout: configService.get<number>('IDENTITY_PASS_TIMEOUT', 30000),
+          config: {
+            defaultAdapter: 'identitypass',
+            enableFallback: false,
+            adapters: [
+              {
+                name: 'identitypass',
+                enabled: true,
+                priority: 1,
+                config: {
+                  apiKey,
+                  baseUrl: configService.get<string>('IDENTITY_PASS_BASE_URL', 'https://api.myidentitypass.com'),
+                  timeout: configService.get<number>('IDENTITY_PASS_TIMEOUT', 30000),
+                },
               },
-            },
-          ],
+            ],
+          },
+          factories: {
+            identitypass: (config) => new IdentityPassCompositeAdapter(config),
+          },
         };
       },
       inject: [ConfigService],
     }),
     
-    // Register adapter factory after module initialization
     VerificationModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: 'ADAPTER_FACTORY',
-      useFactory: (manager) => {
-        // Register the IdentityPass adapter factory
-        manager.registerFactory('identitypass', (config) => {
-          return new IdentityPassAdapter(config);
-        });
-        return manager;
-      },
-      inject: ['VerificationManager'],
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}
