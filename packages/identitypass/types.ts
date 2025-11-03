@@ -1,5 +1,6 @@
 export interface IdentityPassConfig {
   apiKey: string;
+  appId: string;
   baseUrl?: string;
   timeout?: number;
 }

@@ -22,7 +22,7 @@ cd examples/nestjs
 
 # Set up environment
 cp .env.example .env
-# Edit .env and add your IDENTITY_PASS_API_KEY
+# Edit .env and add your IDENTITY_PASS_API_KEY and IDENTITY_PASS_APP_ID
 
 # Run the example
 pnpm run start:dev
@@ -250,16 +250,19 @@ Required environment variables in `.env`:
 PORT=3000
 NODE_ENV=development
 IDENTITY_PASS_API_KEY=your_api_key_here
+IDENTITY_PASS_APP_ID=your_app_id_here
 IDENTITY_PASS_BASE_URL=https://api.myidentitypass.com
 IDENTITY_PASS_TIMEOUT=30000
 ```
 
-## Getting Your API Key
+## Getting Your API Credentials
 
 1. Sign up at [MyIdentityPass](https://myidentitypass.com)
 2. Navigate to your dashboard
-3. Generate an API key
-4. Add it to your `.env` file
+3. Generate an API key and App ID
+4. Add both to your `.env` file
+
+**Note**: The IdentityPass API requires both `x-api-key` and `app-id` headers for authentication.
 
 ## Support
 

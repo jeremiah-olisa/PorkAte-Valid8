@@ -76,8 +76,9 @@ cp .env.example .env
 PORT=3000
 NODE_ENV=development
 
-# Get your API key from https://myidentitypass.com
+# Get your API credentials from https://myidentitypass.com
 IDENTITY_PASS_API_KEY=your_identity_pass_api_key_here
+IDENTITY_PASS_APP_ID=your_identity_pass_app_id_here
 IDENTITY_PASS_BASE_URL=https://api.myidentitypass.com
 IDENTITY_PASS_TIMEOUT=30000
 ```
@@ -257,6 +258,7 @@ import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
             priority: 1,
             config: {
               apiKey: configService.get('IDENTITY_PASS_API_KEY'),
+              appId: configService.get('IDENTITY_PASS_APP_ID'),
               baseUrl: configService.get('IDENTITY_PASS_BASE_URL'),
               timeout: configService.get('IDENTITY_PASS_TIMEOUT'),
             },
@@ -330,9 +332,9 @@ cd ../..  # Go to monorepo root
 pnpm build
 ```
 
-### "IDENTITY_PASS_API_KEY is not defined"
+### "IDENTITY_PASS_API_KEY is not defined" or "IDENTITY_PASS_APP_ID is not defined"
 
-Make sure you've created a `.env` file with your API key:
+Make sure you've created a `.env` file with your API credentials:
 ```bash
 cp .env.example .env
 # Edit .env with your credentials

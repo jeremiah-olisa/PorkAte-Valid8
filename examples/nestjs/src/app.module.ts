@@ -18,10 +18,17 @@ import { VerificationModule } from './verification/verification.module';
     Valid8Module.forRootAsync({
       useFactory: (configService: ConfigService) => {
         const apiKey = configService.get<string>('IDENTITY_PASS_API_KEY');
+        const appId = configService.get<string>('IDENTITY_PASS_APP_ID');
 
         if (!apiKey) {
           throw new Error(
             'IDENTITY_PASS_API_KEY is not set in environment variables',
+          );
+        }
+
+        if (!appId) {
+          throw new Error(
+            'IDENTITY_PASS_APP_ID is not set in environment variables',
           );
         }
 
@@ -36,6 +43,7 @@ import { VerificationModule } from './verification/verification.module';
                 priority: 1,
                 config: {
                   apiKey,
+                  appId,
                   baseUrl: configService.get<string>(
                     'IDENTITY_PASS_BASE_URL',
                     'https://api.myidentitypass.com',

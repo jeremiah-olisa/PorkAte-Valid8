@@ -45,6 +45,7 @@ import { IdentityPassCompositeAdapter } from '@porkate/valid8-identitypass';
 
 const adapter = new IdentityPassCompositeAdapter({
   apiKey: process.env.IDENTITY_PASS_API_KEY,
+  appId: process.env.IDENTITY_PASS_APP_ID,
   baseUrl: 'https://api.myidentitypass.com', // optional
   timeout: 30000, // optional, default 30s
 });
@@ -81,6 +82,7 @@ import { IdentityPassAdapter } from '@porkate/valid8-identitypass';
 
 const adapter = new IdentityPassAdapter({
   apiKey: process.env.IDENTITY_PASS_API_KEY,
+  appId: process.env.IDENTITY_PASS_APP_ID,
 });
 
 const result = await adapter.verifyNIN({
@@ -495,7 +497,8 @@ interface VerificationResponse<T, M> {
 
 ```typescript
 interface IdentityPassConfig {
-  apiKey: string;                                    // Required: Your IdentityPass API key
+  apiKey: string;                                    // Required: Your IdentityPass API key (x-api-key header)
+  appId: string;                                     // Required: Your IdentityPass App ID (app-id header)
   baseUrl?: string;                                 // Optional: Default 'https://api.myidentitypass.com'
   timeout?: number;                                 // Optional: Request timeout in ms, default 30000
 }
@@ -560,6 +563,7 @@ const manager = new VerificationManager({
       priority: 1,
       config: {
         apiKey: process.env.IDENTITY_PASS_API_KEY,
+        appId: process.env.IDENTITY_PASS_APP_ID,
       },
     },
   ],
@@ -575,11 +579,12 @@ const result = await adapter.verifyNIN({...});
 
 ## Best Practices
 
-1. **Environment Variables**: Store API keys in environment variables
+1. **Environment Variables**: Store API credentials in environment variables
    ```typescript
    const apiKey = process.env.IDENTITY_PASS_API_KEY;
-   if (!apiKey) {
-     throw new Error('IDENTITY_PASS_API_KEY not set');
+   const appId = process.env.IDENTITY_PASS_APP_ID;
+   if (!apiKey || !appId) {
+     throw new Error('IDENTITY_PASS_API_KEY and IDENTITY_PASS_APP_ID must be set');
    }
    ```
 
