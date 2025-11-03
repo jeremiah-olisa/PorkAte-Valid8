@@ -2,6 +2,10 @@
 
 NestJS integration module for the porkate-valid8 KYC/KYB verification framework. Provides seamless integration with NestJS applications, including dependency injection, decorators, and comprehensive verification endpoints.
 
+## 📚 Documentation
+
+**[📖 View Full API Documentation](https://jeremiah-olisa.github.io/PorkAte-Valid8/)** - Complete API reference with NestJS integration examples.
+
 ## Installation
 
 ```bash

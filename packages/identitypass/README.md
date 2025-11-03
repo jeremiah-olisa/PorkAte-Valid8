@@ -2,6 +2,15 @@
 
 IdentityPass adapter for the Valid8 KYC/KYB verification framework. Provides Nigerian identity verification services including NIN, BVN, CAC, and more.
 
+## 📚 Documentation
+
+**[📖 View Full API Documentation](https://jeremiah-olisa.github.io/PorkAte-Valid8/)** - Complete API reference with all services, methods, and examples.
+
+For detailed service documentation, see:
+- [IdentityPassAdapter](https://jeremiah-olisa.github.io/PorkAte-Valid8/IdentityPassAdapter.html)
+- [IdentityPassCompositeAdapter](https://jeremiah-olisa.github.io/PorkAte-Valid8/IdentityPassCompositeAdapter.html)
+- All service classes (NIN, BVN, CAC, etc.)
+
 ## Installation
 
 ```bash

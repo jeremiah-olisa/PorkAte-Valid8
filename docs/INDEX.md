@@ -2,12 +2,23 @@
 
 Complete documentation system for the Porkate-Valid8 KYC/KYB verification framework.
 
-## 🎯 Quick Navigation
+## � Live Documentation
+
+**🔗 [View Full API Documentation](https://jeremiah-olisa.github.io/PorkAte-Valid8/)**
+
+Interactive JSDoc documentation with:
+- Complete API reference for all classes and interfaces
+- Type definitions and method signatures
+- Usage examples and tutorials
+- Searchable navigation
+
+## �🎯 Quick Navigation
 
 | Documentation Type | Location | Purpose |
 |-------------------|----------|---------|
+| **Live API Docs** | [GitHub Pages](https://jeremiah-olisa.github.io/PorkAte-Valid8/) | Interactive HTML documentation |
 | **Package READMEs** | `packages/*/README.md` | Package-specific usage guides |
-| **API Reference (HTML)** | `docs/html/` | Interactive JSDoc documentation |
+| **API Reference (Local)** | `docs/html/` | Generate locally with JSDoc |
 | **Tutorials** | `docs/tutorials/` | Step-by-step learning guides |
 | **Architecture** | `docs/ARCHITECTURE.md` | System design and patterns |
 | **Generation Guide** | `docs/GENERATING_DOCS.md` | How to generate docs |
@@ -18,7 +29,8 @@ Complete documentation system for the Porkate-Valid8 KYC/KYB verification framew
 
 1. **Installation**: See [Tutorial 1: Installation](./tutorials/01-installation.md)
 2. **Basic Usage**: See [Tutorial 2: Basic Verification](./tutorials/02-basic-verification.md)
-3. **Package Docs**: Check individual package READMEs:
+3. **API Reference**: Browse [Live Documentation](https://jeremiah-olisa.github.io/PorkAte-Valid8/)
+4. **Package Docs**: Check individual package READMEs:
    - [porkate-valid8](../packages/core/README.md) - Core package
    - [porkate-valid8-identitypass](../packages/identitypass/README.md) - IdentityPass adapter
    - [porkate-valid8-nest](../packages/nest/README.md) - NestJS integration
@@ -26,7 +38,7 @@ Complete documentation system for the Porkate-Valid8 KYC/KYB verification framew
 ### For Developers
 
 1. **Architecture**: Read [ARCHITECTURE.md](./ARCHITECTURE.md)
-2. **API Reference**: Generate and view [HTML docs](#generating-documentation)
+2. **API Reference**: View [GitHub Pages](https://jeremiah-olisa.github.io/PorkAte-Valid8/) or generate locally
 3. **Contributing**: See contribution guidelines
 
 ## 📖 Documentation Structure

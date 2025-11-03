@@ -2,6 +2,10 @@
 
 A flexible TypeScript KYC/KYB verification package with multiple service adapters and comprehensive event logging.
 
+## 📚 Documentation
+
+**[📖 View Full API Documentation](https://jeremiah-olisa.github.io/PorkAte-Valid8/)** - Complete API reference with examples, tutorials, and type definitions.
+
 ## Packages
 
 ### [porkate-valid8](./packages/core)

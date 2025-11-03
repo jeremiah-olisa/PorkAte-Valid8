@@ -2,6 +2,10 @@
 
 Core verification manager, interfaces, events system, and exceptions for the Valid8 KYC/KYB verification framework.
 
+## 📚 Documentation
+
+**[📖 View Full API Documentation](https://jeremiah-olisa.github.io/PorkAte-Valid8/)** - Complete API reference with all classes, interfaces, and examples.
+
 ## Installation
 
 ```bash
