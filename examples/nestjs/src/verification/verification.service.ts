@@ -12,7 +12,7 @@ export class VerificationService {
 
   private getIdentityPassAdapter(): IdentityPassCompositeAdapter {
     const adapter = this.valid8Service.getDefaultAdapter();
-    
+
     if (!adapter) {
       throw new BadRequestException('No verification adapter available');
     }
@@ -29,25 +29,27 @@ export class VerificationService {
   async verifyNIN(data: dto.VerifyNINDto): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const ninService = adapter.getNINService();
-    
+
     if (!ninService) {
       throw new BadRequestException('NIN verification service not available');
     }
 
     this.logger.log(`Verifying NIN: ${data.nin.substring(0, 4)}***`);
     const result = await ninService.verifyNIN(data);
-    
+
     if (!result.success) {
       this.logger.warn(`NIN verification failed: ${result.error}`);
     }
-    
+
     return result;
   }
 
-  async verifyNINWithFace(data: dto.VerifyNINWithFaceDto): Promise<VerificationResponse> {
+  async verifyNINWithFace(
+    data: dto.VerifyNINWithFaceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const ninService = adapter.getNINService();
-    
+
     if (!ninService || !ninService.verifyNINWithFace) {
       throw new BadRequestException('NIN face verification not available');
     }
@@ -56,10 +58,12 @@ export class VerificationService {
     return await ninService.verifyNINWithFace(data);
   }
 
-  async verifyNINSlip(data: dto.VerifyNINSlipDto): Promise<VerificationResponse> {
+  async verifyNINSlip(
+    data: dto.VerifyNINSlipDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const ninService = adapter.getNINService();
-    
+
     if (!ninService || !ninService.verifyNINSlip) {
       throw new BadRequestException('NIN slip verification not available');
     }
@@ -68,10 +72,12 @@ export class VerificationService {
     return await ninService.verifyNINSlip(data);
   }
 
-  async verifyVirtualNIN(data: dto.VerifyVirtualNINDto): Promise<VerificationResponse> {
+  async verifyVirtualNIN(
+    data: dto.VerifyVirtualNINDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const ninService = adapter.getNINService();
-    
+
     if (!ninService || !ninService.verifyVirtualNIN) {
       throw new BadRequestException('Virtual NIN verification not available');
     }
@@ -84,7 +90,7 @@ export class VerificationService {
   async verifyBVN(data: dto.VerifyBVNDto): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const bvnService = adapter.getBVNService();
-    
+
     if (!bvnService) {
       throw new BadRequestException('BVN verification service not available');
     }
@@ -93,10 +99,12 @@ export class VerificationService {
     return await bvnService.verifyBVN(data);
   }
 
-  async verifyBVNAdvance(data: dto.VerifyBVNAdvanceDto): Promise<VerificationResponse> {
+  async verifyBVNAdvance(
+    data: dto.VerifyBVNAdvanceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const bvnService = adapter.getBVNService();
-    
+
     if (!bvnService || !bvnService.verifyBVNAdvance) {
       throw new BadRequestException('BVN advance verification not available');
     }
@@ -105,10 +113,12 @@ export class VerificationService {
     return await bvnService.verifyBVNAdvance(data);
   }
 
-  async verifyBVNWithFace(data: dto.VerifyBVNWithFaceDto): Promise<VerificationResponse> {
+  async verifyBVNWithFace(
+    data: dto.VerifyBVNWithFaceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const bvnService = adapter.getBVNService();
-    
+
     if (!bvnService || !bvnService.verifyBVNWithFace) {
       throw new BadRequestException('BVN face verification not available');
     }
@@ -117,10 +127,12 @@ export class VerificationService {
     return await bvnService.verifyBVNWithFace(data);
   }
 
-  async getBVNByPhone(data: dto.GetBVNByPhoneDto): Promise<VerificationResponse> {
+  async getBVNByPhone(
+    data: dto.GetBVNByPhoneDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const bvnService = adapter.getBVNService();
-    
+
     if (!bvnService || !bvnService.getBVNByPhoneNumber) {
       throw new BadRequestException('BVN by phone lookup not available');
     }
@@ -133,7 +145,7 @@ export class VerificationService {
   async verifyCAC(data: dto.VerifyCACDto): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const cacService = adapter.getCACService();
-    
+
     if (!cacService) {
       throw new BadRequestException('CAC verification service not available');
     }
@@ -142,22 +154,28 @@ export class VerificationService {
     return await cacService.verifyCAC(data);
   }
 
-  async verifyCACAdvance(data: dto.VerifyCACAdvanceDto): Promise<VerificationResponse> {
+  async verifyCACAdvance(
+    data: dto.VerifyCACAdvanceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const cacService = adapter.getCACService();
-    
+
     if (!cacService || !cacService.verifyCACAdvance) {
       throw new BadRequestException('CAC advance verification not available');
     }
 
-    this.logger.log(`Verifying CAC (advance): ${data.rcNumber || data.companyName}`);
+    this.logger.log(
+      `Verifying CAC (advance): ${data.rcNumber || data.companyName}`,
+    );
     return await cacService.verifyCACAdvance(data);
   }
 
-  async searchCompanyByName(data: dto.SearchCompanyByNameDto): Promise<VerificationResponse> {
+  async searchCompanyByName(
+    data: dto.SearchCompanyByNameDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const cacService = adapter.getCACService();
-    
+
     if (!cacService || !cacService.searchCompanyByName) {
       throw new BadRequestException('Company search not available');
     }
@@ -166,10 +184,12 @@ export class VerificationService {
     return await cacService.searchCompanyByName(data);
   }
 
-  async searchCompanyByRC(data: dto.SearchCompanyByRCDto): Promise<VerificationResponse> {
+  async searchCompanyByRC(
+    data: dto.SearchCompanyByRCDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const cacService = adapter.getCACService();
-    
+
     if (!cacService || !cacService.searchCompanyByRegistrationNumber) {
       throw new BadRequestException('Company RC search not available');
     }
@@ -179,47 +199,65 @@ export class VerificationService {
   }
 
   // Driver's License Methods
-  async verifyDriversLicense(data: dto.VerifyDriversLicenseDto): Promise<VerificationResponse> {
+  async verifyDriversLicense(
+    data: dto.VerifyDriversLicenseDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const dlService = adapter.getDriversLicenseService();
-    
+
     if (!dlService) {
-      throw new BadRequestException('Driver\'s license verification not available');
+      throw new BadRequestException(
+        "Driver's license verification not available",
+      );
     }
 
     this.logger.log(`Verifying driver's license: ${data.licenseNumber}`);
     return await dlService.verifyDriversLicense(data);
   }
 
-  async verifyDriversLicenseWithFace(data: dto.VerifyDriversLicenseWithFaceDto): Promise<VerificationResponse> {
+  async verifyDriversLicenseWithFace(
+    data: dto.VerifyDriversLicenseWithFaceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const dlService = adapter.getDriversLicenseService();
-    
+
     if (!dlService || !dlService.verifyDriversLicenseWithFace) {
-      throw new BadRequestException('Driver\'s license face verification not available');
+      throw new BadRequestException(
+        "Driver's license face verification not available",
+      );
     }
 
-    this.logger.log(`Verifying driver's license with face: ${data.licenseNumber}`);
+    this.logger.log(
+      `Verifying driver's license with face: ${data.licenseNumber}`,
+    );
     return await dlService.verifyDriversLicenseWithFace(data);
   }
 
-  async verifyDriversLicenseAdvance(data: dto.VerifyDriversLicenseAdvanceDto): Promise<VerificationResponse> {
+  async verifyDriversLicenseAdvance(
+    data: dto.VerifyDriversLicenseAdvanceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const dlService = adapter.getDriversLicenseService();
-    
+
     if (!dlService || !dlService.verifyDriversLicenseAdvance) {
-      throw new BadRequestException('Driver\'s license advance verification not available');
+      throw new BadRequestException(
+        "Driver's license advance verification not available",
+      );
     }
 
-    this.logger.log(`Verifying driver's license (advance): ${data.licenseNumber}`);
+    this.logger.log(
+      `Verifying driver's license (advance): ${data.licenseNumber}`,
+    );
     return await dlService.verifyDriversLicenseAdvance(data);
   }
 
   // Passport Methods
-  async verifyPassport(data: dto.VerifyPassportDto): Promise<VerificationResponse> {
+  async verifyPassport(
+    data: dto.VerifyPassportDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const passportService = adapter.getPassportService();
-    
+
     if (!passportService) {
       throw new BadRequestException('Passport verification not available');
     }
@@ -228,10 +266,12 @@ export class VerificationService {
     return await passportService.verifyPassport(data);
   }
 
-  async verifyPassportWithFace(data: dto.VerifyPassportWithFaceDto): Promise<VerificationResponse> {
+  async verifyPassportWithFace(
+    data: dto.VerifyPassportWithFaceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const passportService = adapter.getPassportService();
-    
+
     if (!passportService || !passportService.verifyPassportWithFace) {
       throw new BadRequestException('Passport face verification not available');
     }
@@ -241,10 +281,12 @@ export class VerificationService {
   }
 
   // Phone Verification Methods
-  async verifyPhone(data: dto.VerifyPhoneNumberDto): Promise<VerificationResponse> {
+  async verifyPhone(
+    data: dto.VerifyPhoneNumberDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const phoneService = adapter.getPhoneService();
-    
+
     if (!phoneService) {
       throw new BadRequestException('Phone verification not available');
     }
@@ -253,10 +295,12 @@ export class VerificationService {
     return await phoneService.verifyPhoneNumber(data);
   }
 
-  async verifyPhoneAdvance(data: dto.VerifyPhoneNumberAdvanceDto): Promise<VerificationResponse> {
+  async verifyPhoneAdvance(
+    data: dto.VerifyPhoneNumberAdvanceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const phoneService = adapter.getPhoneService();
-    
+
     if (!phoneService || !phoneService.verifyPhoneNumberAdvance) {
       throw new BadRequestException('Phone advance verification not available');
     }
@@ -266,10 +310,12 @@ export class VerificationService {
   }
 
   // Bank Account Methods
-  async verifyBankAccount(data: dto.VerifyBankAccountDto): Promise<VerificationResponse> {
+  async verifyBankAccount(
+    data: dto.VerifyBankAccountDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const bankService = adapter.getBankAccountService();
-    
+
     if (!bankService) {
       throw new BadRequestException('Bank account verification not available');
     }
@@ -278,10 +324,12 @@ export class VerificationService {
     return await bankService.verifyBankAccount(data);
   }
 
-  async compareBankAccount(data: dto.CompareBankAccountDto): Promise<VerificationResponse> {
+  async compareBankAccount(
+    data: dto.CompareBankAccountDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const bankService = adapter.getBankAccountService();
-    
+
     if (!bankService || !bankService.compareBankAccount) {
       throw new BadRequestException('Bank account comparison not available');
     }
@@ -293,7 +341,7 @@ export class VerificationService {
   async listBankCodes(): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const bankService = adapter.getBankAccountService();
-    
+
     if (!bankService || !bankService.listBankCodes) {
       throw new BadRequestException('Bank code listing not available');
     }
@@ -303,10 +351,12 @@ export class VerificationService {
   }
 
   // Vehicle Methods
-  async verifyPlateNumber(data: dto.VerifyPlateNumberDto): Promise<VerificationResponse> {
+  async verifyPlateNumber(
+    data: dto.VerifyPlateNumberDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const vehicleService = adapter.getVehicleService();
-    
+
     if (!vehicleService || !vehicleService.verifyPlateNumber) {
       throw new BadRequestException('Vehicle verification not available');
     }
@@ -318,7 +368,7 @@ export class VerificationService {
   async verifyVIN(data: dto.VerifyVINDto): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const vehicleService = adapter.getVehicleService();
-    
+
     if (!vehicleService || !vehicleService.verifyVINChasis) {
       throw new BadRequestException('VIN verification not available');
     }
@@ -331,7 +381,7 @@ export class VerificationService {
   async verifyTIN(data: dto.VerifyTINDto): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const taxService = adapter.getTaxService();
-    
+
     if (!taxService) {
       throw new BadRequestException('TIN verification not available');
     }
@@ -340,10 +390,12 @@ export class VerificationService {
     return await taxService.verifyTIN(data);
   }
 
-  async verifyStampDuty(data: dto.VerifyStampDutyDto): Promise<VerificationResponse> {
+  async verifyStampDuty(
+    data: dto.VerifyStampDutyDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const taxService = adapter.getTaxService();
-    
+
     if (!taxService || !taxService.verifyStampDuty) {
       throw new BadRequestException('Stamp duty verification not available');
     }
@@ -353,12 +405,14 @@ export class VerificationService {
   }
 
   // Voter's Card Method
-  async verifyVotersCard(data: dto.VerifyVotersCardDto): Promise<VerificationResponse> {
+  async verifyVotersCard(
+    data: dto.VerifyVotersCardDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const votersService = adapter.getVotersCardService();
-    
+
     if (!votersService) {
-      throw new BadRequestException('Voter\'s card verification not available');
+      throw new BadRequestException("Voter's card verification not available");
     }
 
     this.logger.log(`Verifying voter's card: ${data.vin}`);
@@ -366,36 +420,48 @@ export class VerificationService {
   }
 
   // Credit Bureau Methods
-  async verifyCreditConsumerBasic(data: dto.VerifyCreditBureauConsumerBasicDto): Promise<VerificationResponse> {
+  async verifyCreditConsumerBasic(
+    data: dto.VerifyCreditBureauConsumerBasicDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const creditService = adapter.getCreditBureauService();
-    
+
     if (!creditService || !creditService.verifyCreditBureauConsumerBasic) {
-      throw new BadRequestException('Credit bureau consumer verification not available');
+      throw new BadRequestException(
+        'Credit bureau consumer verification not available',
+      );
     }
 
     this.logger.log(`Verifying credit bureau (consumer basic)`);
     return await creditService.verifyCreditBureauConsumerBasic(data);
   }
 
-  async verifyCreditConsumerAdvance(data: dto.VerifyCreditBureauConsumerAdvanceDto): Promise<VerificationResponse> {
+  async verifyCreditConsumerAdvance(
+    data: dto.VerifyCreditBureauConsumerAdvanceDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const creditService = adapter.getCreditBureauService();
-    
+
     if (!creditService || !creditService.verifyCreditBureauConsumerAdvance) {
-      throw new BadRequestException('Credit bureau consumer advance verification not available');
+      throw new BadRequestException(
+        'Credit bureau consumer advance verification not available',
+      );
     }
 
     this.logger.log(`Verifying credit bureau (consumer advance)`);
     return await creditService.verifyCreditBureauConsumerAdvance(data);
   }
 
-  async verifyCreditCommercialBasic(data: dto.VerifyCreditBureauCommercialBasicDto): Promise<VerificationResponse> {
+  async verifyCreditCommercialBasic(
+    data: dto.VerifyCreditBureauCommercialBasicDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const creditService = adapter.getCreditBureauService();
-    
+
     if (!creditService || !creditService.verifyCreditBureauCommercialBasic) {
-      throw new BadRequestException('Credit bureau commercial verification not available');
+      throw new BadRequestException(
+        'Credit bureau commercial verification not available',
+      );
     }
 
     this.logger.log(`Verifying credit bureau (commercial basic)`);
@@ -403,10 +469,12 @@ export class VerificationService {
   }
 
   // Other Verification Methods
-  async verifyAddress(data: dto.VerifyAddressDto): Promise<VerificationResponse> {
+  async verifyAddress(
+    data: dto.VerifyAddressDto,
+  ): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const otherService = adapter.getOtherService();
-    
+
     if (!otherService || !otherService.verifyAddress) {
       throw new BadRequestException('Address verification not available');
     }
@@ -418,7 +486,7 @@ export class VerificationService {
   async verifyNYSC(data: dto.VerifyNYSCDto): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const otherService = adapter.getOtherService();
-    
+
     if (!otherService || !otherService.verifyNYSC) {
       throw new BadRequestException('NYSC verification not available');
     }
@@ -430,7 +498,7 @@ export class VerificationService {
   async verifyWAEC(data: dto.VerifyWAECDto): Promise<VerificationResponse> {
     const adapter = this.getIdentityPassAdapter();
     const otherService = adapter.getOtherService();
-    
+
     if (!otherService || !otherService.verifyWAEC) {
       throw new BadRequestException('WAEC verification not available');
     }

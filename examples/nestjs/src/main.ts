@@ -26,4 +26,4 @@ async function bootstrap() {
   logger.log(`💚 Health check: http://localhost:${port}/health`);
 }
 
-bootstrap();
+void bootstrap();

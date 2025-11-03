@@ -1,4 +1,14 @@
-import { Controller, Post, Get, Body, HttpCode, HttpStatus, UsePipes, ValidationPipe, BadRequestException } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Body,
+  HttpCode,
+  HttpStatus,
+  UsePipes,
+  ValidationPipe,
+  BadRequestException,
+} from '@nestjs/common';
 import { VerificationService } from './verification.service';
 import * as dto from './dto';
 
@@ -7,6 +17,12 @@ import * as dto from './dto';
 export class VerificationController {
   constructor(private readonly verificationService: VerificationService) {}
 
+  private handleError(error: unknown): never {
+    const message =
+      error instanceof Error ? error.message : 'Verification failed';
+    throw new BadRequestException(message);
+  }
+
   // NIN Endpoints
   @Post('nin')
   @HttpCode(HttpStatus.OK)
@@ -14,7 +30,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyNIN(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -24,7 +40,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyNINWithFace(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -34,7 +50,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyNINSlip(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -44,7 +60,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyVirtualNIN(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -55,7 +71,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyBVN(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -65,7 +81,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyBVNAdvance(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -75,7 +91,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyBVNWithFace(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -85,7 +101,7 @@ export class VerificationController {
     try {
       return await this.verificationService.getBVNByPhone(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -96,7 +112,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyCAC(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -106,7 +122,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyCACAdvance(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -116,7 +132,7 @@ export class VerificationController {
     try {
       return await this.verificationService.searchCompanyByName(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -126,7 +142,7 @@ export class VerificationController {
     try {
       return await this.verificationService.searchCompanyByRC(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -137,27 +153,31 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyDriversLicense(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
   @Post('drivers-license/face')
   @HttpCode(HttpStatus.OK)
-  async verifyDriversLicenseWithFace(@Body() body: dto.VerifyDriversLicenseWithFaceDto) {
+  async verifyDriversLicenseWithFace(
+    @Body() body: dto.VerifyDriversLicenseWithFaceDto,
+  ) {
     try {
       return await this.verificationService.verifyDriversLicenseWithFace(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
   @Post('drivers-license/advance')
   @HttpCode(HttpStatus.OK)
-  async verifyDriversLicenseAdvance(@Body() body: dto.VerifyDriversLicenseAdvanceDto) {
+  async verifyDriversLicenseAdvance(
+    @Body() body: dto.VerifyDriversLicenseAdvanceDto,
+  ) {
     try {
       return await this.verificationService.verifyDriversLicenseAdvance(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -168,7 +188,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyPassport(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -178,7 +198,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyPassportWithFace(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -189,7 +209,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyPhone(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -199,7 +219,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyPhoneAdvance(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -210,7 +230,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyBankAccount(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -220,7 +240,7 @@ export class VerificationController {
     try {
       return await this.verificationService.compareBankAccount(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -229,7 +249,7 @@ export class VerificationController {
     try {
       return await this.verificationService.listBankCodes();
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -240,7 +260,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyPlateNumber(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -250,7 +270,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyVIN(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -261,7 +281,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyTIN(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -271,7 +291,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyStampDuty(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -282,38 +302,44 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyVotersCard(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
   // Credit Bureau Endpoints
   @Post('credit/consumer-basic')
   @HttpCode(HttpStatus.OK)
-  async verifyCreditConsumerBasic(@Body() body: dto.VerifyCreditBureauConsumerBasicDto) {
+  async verifyCreditConsumerBasic(
+    @Body() body: dto.VerifyCreditBureauConsumerBasicDto,
+  ) {
     try {
       return await this.verificationService.verifyCreditConsumerBasic(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
   @Post('credit/consumer-advance')
   @HttpCode(HttpStatus.OK)
-  async verifyCreditConsumerAdvance(@Body() body: dto.VerifyCreditBureauConsumerAdvanceDto) {
+  async verifyCreditConsumerAdvance(
+    @Body() body: dto.VerifyCreditBureauConsumerAdvanceDto,
+  ) {
     try {
       return await this.verificationService.verifyCreditConsumerAdvance(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
   @Post('credit/commercial-basic')
   @HttpCode(HttpStatus.OK)
-  async verifyCreditCommercialBasic(@Body() body: dto.VerifyCreditBureauCommercialBasicDto) {
+  async verifyCreditCommercialBasic(
+    @Body() body: dto.VerifyCreditBureauCommercialBasicDto,
+  ) {
     try {
       return await this.verificationService.verifyCreditCommercialBasic(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -324,7 +350,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyAddress(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -334,7 +360,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyNYSC(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 
@@ -344,7 +370,7 @@ export class VerificationController {
     try {
       return await this.verificationService.verifyWAEC(body);
     } catch (error) {
-      throw new BadRequestException(error.message);
+      this.handleError(error);
     }
   }
 }

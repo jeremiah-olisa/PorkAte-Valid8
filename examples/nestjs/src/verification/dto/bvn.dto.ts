@@ -1,4 +1,11 @@
-import { IsString, IsNotEmpty, IsOptional, Length, Matches, IsBoolean } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsOptional,
+  Length,
+  Matches,
+  IsBoolean,
+} from 'class-validator';
 
 export class VerifyBVNDto {
   @IsString()
@@ -45,6 +52,8 @@ export class VerifyBVNWithFaceDto {
 export class GetBVNByPhoneDto {
   @IsString()
   @IsNotEmpty()
-  @Matches(/^\+?234\d{10}$|^0\d{10}$/, { message: 'Invalid Nigerian phone number format' })
+  @Matches(/^\+?234\d{10}$|^0\d{10}$/, {
+    message: 'Invalid Nigerian phone number format',
+  })
   phoneNumber: string;
 }

@@ -13,14 +13,16 @@ import { VerificationModule } from './verification/verification.module';
       isGlobal: true,
       envFilePath: '.env',
     }),
-    
+
     // Configure Valid8 with IdentityPass adapter
     Valid8Module.forRootAsync({
       useFactory: (configService: ConfigService) => {
         const apiKey = configService.get<string>('IDENTITY_PASS_API_KEY');
-        
+
         if (!apiKey) {
-          throw new Error('IDENTITY_PASS_API_KEY is not set in environment variables');
+          throw new Error(
+            'IDENTITY_PASS_API_KEY is not set in environment variables',
+          );
         }
 
         return {
@@ -34,20 +36,27 @@ import { VerificationModule } from './verification/verification.module';
                 priority: 1,
                 config: {
                   apiKey,
-                  baseUrl: configService.get<string>('IDENTITY_PASS_BASE_URL', 'https://api.myidentitypass.com'),
-                  timeout: configService.get<number>('IDENTITY_PASS_TIMEOUT', 30000),
+                  baseUrl: configService.get<string>(
+                    'IDENTITY_PASS_BASE_URL',
+                    'https://api.myidentitypass.com',
+                  ),
+                  timeout: configService.get<number>(
+                    'IDENTITY_PASS_TIMEOUT',
+                    30000,
+                  ),
                 },
               },
             ],
           },
           factories: {
-            identitypass: (config) => new IdentityPassCompositeAdapter(config),
+            identitypass: (config: any) =>
+              new IdentityPassCompositeAdapter(config),
           },
         };
       },
       inject: [ConfigService],
     }),
-    
+
     VerificationModule,
   ],
   controllers: [AppController],
