@@ -1,6 +1,6 @@
 {
   "name": "porkate-valid8",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Core verification manager and interfaces for KYC/KYB verification",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

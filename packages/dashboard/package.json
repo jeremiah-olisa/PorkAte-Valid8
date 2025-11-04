@@ -1,6 +1,6 @@
 {
   "name": "porkate-valid8-dashboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hangfire-style dashboard for porkate-valid8 verification system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

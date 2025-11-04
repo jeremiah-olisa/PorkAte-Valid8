@@ -54,7 +54,7 @@ jobs:
         continue-on-error: true
 
       - name: Build packages
-        run: pnpm run build --filter "./packages/*"
+        run: pnpm run build
 
       - name: Run tests
         run: pnpm test
