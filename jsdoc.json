@@ -37,16 +37,6 @@
       "hideGenerator": false,
       "navLinks": [
         {
-          "label": "Packages",
-          "href": "#",
-          "children": [
-            { "label": "Core", "href": "/packages/core/index.html" },
-            { "label": "IdentityPass", "href": "/packages/identitypass/index.html" },
-            { "label": "NestJS", "href": "/packages/nest/index.html" },
-            { "label": "Dashboard", "href": "/packages/dashboard/index.html" }
-          ]
-        },
-        {
           "label": "GitHub",
           "href": "https://github.com/jeremiah-olisa/PorkAte-Valid8"
         },
@@ -65,8 +55,7 @@
     "verbose": false,
     "readme": "./README.md",
     "package": "./package.json",
-    "tutorials": "./docs/tutorials",
-    "lenient": true
+    "tutorials": "./docs/tutorials"
   },
   "markdown": {
     "hardwrap": false,

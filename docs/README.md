@@ -8,10 +8,10 @@ This documentation is organized into the following sections:
 
 ### Core Packages
 
-- **[porkate-valid8](/packages/core/index.html)** - Core verification manager and interfaces
-- **[porkate-valid8-identitypass](/packages/identitypass/index.html)** - IdentityPass adapter implementation
-- **[porkate-valid8-nest](/packages/nest/index.html)** - NestJS integration module
-- **[porkate-valid8-dashboard](/packages/dashboard/index.html)** - Monitoring dashboard
+ **[porkate-valid8](./tutorials/core.md)** - Core verification manager and interfaces
+ **[porkate-valid8-identitypass](./tutorials/identitypass.md)** - IdentityPass adapter implementation
+ **[porkate-valid8-nest](./tutorials/nest.md)** - NestJS integration module
+ **[porkate-valid8-dashboard](./tutorials/dashboard.md)** - Monitoring dashboard
 
 ### API Documentation
 

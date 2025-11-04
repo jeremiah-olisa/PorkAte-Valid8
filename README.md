@@ -9,10 +9,10 @@ A flexible TypeScript KYC/KYB verification package with multiple service adapter
 ## Packages
 
 
-### [porkate-valid8](/packages/core/index.html)
+### [porkate-valid8](./docs/tutorials/core.md)
 Core verification manager, interfaces, events system, and exceptions.
 
-### [porkate-valid8-identitypass](/packages/identitypass/index.html)
+### [porkate-valid8-identitypass](./docs/tutorials/identitypass.md)
 IdentityPass adapter for Nigerian verification services (NIN, BVN, CAC, etc.).
 
 **Fully Implemented:** Complete suite of 13 verification service types with 42+ methods. All services feature strongly-typed requests and responses, with support for advanced verification methods including face matching, document verification, and comprehensive business checks.
@@ -25,10 +25,10 @@ Key features:
 - ✅ Backward compatible with legacy adapter
 - ✅ Comprehensive documentation and examples
 
-### [porkate-valid8-dashboard](/packages/dashboard/index.html)
+### [porkate-valid8-dashboard](./docs/tutorials/dashboard.md)
 Hangfire-style dashboard for monitoring verification activities and metrics.
 
-### [porkate-valid8-nest](/packages/nest/index.html)
+### [porkate-valid8-nest](./docs/tutorials/nest.md)
 NestJS integration module with decorators and services.
 
 ## Getting Started
