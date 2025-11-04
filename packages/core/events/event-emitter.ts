@@ -31,7 +31,11 @@ export class VerificationEventEmitter {
   }
 
   /**
-   * Emit an event
+   * Emit an event with enriched data
+   * @template T - Event data type extending EventData
+   * @param {string} eventType - The type of verification event
+   * @param {Object} data - Event data (timestamp and correlationId added automatically)
+   * @returns {void}
    */
   emit<T extends EventData = EventData>(
     eventType: VerificationEventType,

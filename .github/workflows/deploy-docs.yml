@@ -60,7 +60,14 @@ jobs:
       - name: Generate JSDoc Documentation
         run: |
           # Generate API documentation using JSDoc
-          npx jsdoc -c jsdoc.json
+          # Note: JSDoc may show parsing warnings for complex TypeScript types, but will still generate docs
+          npx jsdoc -c jsdoc.json || true
+          
+          # Verify docs were generated
+          if [ ! -d "docs/html/porkate-valid8-monorepo/1.0.0" ]; then
+            echo "Error: JSDoc did not generate documentation"
+            exit 1
+          fi
           
       - name: Create docs site structure
         run: |

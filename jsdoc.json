@@ -55,7 +55,8 @@
     "verbose": false,
     "readme": "./README.md",
     "package": "./package.json",
-    "tutorials": "./docs/tutorials"
+    "tutorials": "./docs/tutorials",
+    "lenient": true
   },
   "markdown": {
     "hardwrap": false,
