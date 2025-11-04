@@ -77,11 +77,19 @@ jobs:
             cp -r docs/html/porkate-valid8-monorepo/1.0.0/* _site/
           fi
 
+          # Copy package READMEs to docs/packages/*.md
+          mkdir -p docs/packages
+          for pkg in core identitypass nest dashboard; do
+            if [ -f "packages/$pkg/README.md" ]; then
+              cp packages/$pkg/README.md docs/packages/$pkg.md
+            fi
+          done
+
           # Convert package READMEs to HTML for legacy links with custom template
           npm install -g marked
           for pkg in core identitypass nest dashboard; do
             mkdir -p _site/packages/$pkg
-            marked packages/$pkg/README.md > _site/packages/$pkg/README_CONTENT.html
+            marked docs/packages/$pkg.md > _site/packages/$pkg/README_CONTENT.html
             printf '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>Porkate-Valid8 - %s</title>\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">\n  <style>body{background:#f6f8fa;} .markdown-body{box-sizing:border-box;min-width:200px;max-width:900px;margin:40px auto;padding:40px;background:white;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.07);} .nav{margin-bottom:32px;} .nav a{color:#667eea;text-decoration:none;font-weight:600;margin-right:24px;} .nav a:hover{color:#764ba2;text-decoration:underline;} .nav{padding:24px 0 0 0;text-align:center;} </style>\n</head>\n<body>\n  <div class="nav">\n    <a href="/">Home</a>\n    <a href="/index.html">API Docs</a>\n    <a href="https://github.com/jeremiah-olisa/PorkAte-Valid8">GitHub</a>\n    <a href="https://www.npmjs.com/package/porkate-valid8">npm</a>\n  </div>\n  <article class="markdown-body">' "$pkg" > _site/packages/$pkg/index.html
             cat _site/packages/$pkg/README_CONTENT.html >> _site/packages/$pkg/index.html
             echo '</article></body></html>' >> _site/packages/$pkg/index.html
