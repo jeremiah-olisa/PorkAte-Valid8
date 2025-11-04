@@ -72,12 +72,22 @@ jobs:
       - name: Create docs site structure
         run: |
           mkdir -p _site
-          
           # Copy the JSDoc generated HTML to the root
           if [ -d "docs/html/porkate-valid8-monorepo/1.0.0" ]; then
             cp -r docs/html/porkate-valid8-monorepo/1.0.0/* _site/
           fi
-          
+
+          # Convert package READMEs to HTML for legacy links
+          mkdir -p _site/packages/core
+          mkdir -p _site/packages/identitypass
+          mkdir -p _site/packages/nest
+          mkdir -p _site/packages/dashboard
+          npm install -g marked
+          marked packages/core/README.md > _site/packages/core/index.html
+          marked packages/identitypass/README.md > _site/packages/identitypass/index.html
+          marked packages/nest/README.md > _site/packages/nest/index.html
+          marked packages/dashboard/README.md > _site/packages/dashboard/index.html
+
           # Copy markdown documentation as backup
           mkdir -p _site/markdown
           cp -r docs/*.md _site/markdown/ 2>/dev/null || true
